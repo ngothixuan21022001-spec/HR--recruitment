@@ -1,0 +1,1743 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HR Recruitment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:wght@600&family=Noto+Sans+SC:wght@400;700&display=swap">
+<style>
+:root{
+  --bg:#F6F5F1;--surface:#FFFFFF;--surface-2:#FAF9F6;--line:#E4E2DB;--line-2:#D8D6CE;
+  --ink:#1B1D1C;--ink-2:#3E4341;--muted:#5B605D;
+  --accent:#0F5E5A;--accent-ink:#FFFFFF;--accent-soft:#E3EFED;--accent-line:#9DB9B4;
+  --side:#14302E;--side-ink:#C9DAD6;--side-active:#1F4A46;--side-strong:#FFFFFF;--side-sub:#A9C3BE;
+  --warn:#8A4209;--warn-soft:#FBEBDD;--bad:#A12B2B;--bad-soft:#F8E3E1;--bad-line:#E8C4C0;
+  --info:#1F4E8C;--info-soft:#E4ECF7;--purple:#6B4FA0;--purple-soft:#EEE8F7;
+  --paper:#FFFFFF;--hl:#FFF4C9;
+  --shadow:0 1px 2px rgba(20,48,46,.06);
+  --sans:'Be Vietnam Pro','Noto Sans SC',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:Lora,'Noto Sans SC',Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#111615;--surface:#1A2120;--surface-2:#151B1A;--line:#2A3331;--line-2:#36403E;
+  --ink:#E8ECEA;--ink-2:#C5CCC9;--muted:#98A29E;
+  --accent:#5FB8AF;--accent-ink:#0B1F1D;--accent-soft:#16312E;--accent-line:#2F5C57;
+  --side:#0C1A19;--side-ink:#A9C3BE;--side-active:#1A3835;--side-strong:#FFFFFF;--side-sub:#86A39E;
+  --warn:#E0A36B;--warn-soft:#33261A;--bad:#EB8C85;--bad-soft:#3A1F1D;--bad-line:#5A2E2B;
+  --info:#8DB4EA;--info-soft:#1B2A3D;--purple:#B9A2E6;--purple-soft:#2A2240;
+  --paper:#1E2625;--hl:#3A3419;--shadow:none;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111615;--surface:#1A2120;--surface-2:#151B1A;--line:#2A3331;--line-2:#36403E;
+  --ink:#E8ECEA;--ink-2:#C5CCC9;--muted:#98A29E;
+  --accent:#5FB8AF;--accent-ink:#0B1F1D;--accent-soft:#16312E;--accent-line:#2F5C57;
+  --side:#0C1A19;--side-ink:#A9C3BE;--side-active:#1A3835;--side-strong:#FFFFFF;--side-sub:#86A39E;
+  --warn:#E0A36B;--warn-soft:#33261A;--bad:#EB8C85;--bad-soft:#3A1F1D;--bad-line:#5A2E2B;
+  --info:#8DB4EA;--info-soft:#1B2A3D;--purple:#B9A2E6;--purple-soft:#2A2240;
+  --paper:#1E2625;--hl:#3A3419;--shadow:none;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100%}
+.side{background:var(--side);color:var(--side-ink);padding:20px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;padding:0 8px 20px}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:#E3EFED;color:#0F5E5A;display:grid;place-items:center;flex-shrink:0}
+.brand b{display:block;color:var(--side-strong);font-size:17px}
+.brand small{color:var(--side-sub);font-size:12px}
+.nav{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:8px;color:var(--side-ink);text-decoration:none;font-size:14px}
+.nav:hover{background:rgba(255,255,255,.05);color:var(--side-strong)}
+.nav[aria-current="page"]{background:var(--side-active);color:var(--side-strong);font-weight:600}
+.nav .count{margin-left:auto;font-size:11px;font-weight:700;background:rgba(255,255,255,.1);padding:1px 7px;border-radius:9px}
+.side-foot{margin-top:auto;padding:12px;border-radius:10px;background:rgba(255,255,255,.05);font-size:12px;color:var(--side-sub);line-height:1.5}
+.side-foot b{color:var(--side-strong);font-weight:600}
+main{padding:24px 28px 40px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.top h1{font-family:var(--serif);font-size:27px;font-weight:600;line-height:1.2}
+.top p{color:var(--muted);margin-top:4px;max-width:70ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.pad{padding:18px 20px}
+.card h2{font-size:15px;font-weight:600}
+.sub{font-size:12px;color:var(--muted)}
+.label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.btn{min-height:40px;padding:0 16px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-weight:600;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:var(--accent-line)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.danger{color:var(--bad);border-color:var(--bad-line)}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.sm{min-height:32px;padding:0 10px;font-size:12px;border-radius:8px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.icon-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface);display:inline-grid;place-items:center;cursor:pointer;color:var(--ink-2)}
+.icon-btn:hover{border-color:var(--accent-line);color:var(--accent)}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field>span{font-size:12px;font-weight:500;color:var(--ink-2)}
+.input,select.input,textarea.input{width:100%;min-height:40px;padding:8px 12px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);font-size:13px}
+textarea.input{line-height:1.6;resize:vertical}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap}
+.t-info{background:var(--info-soft);color:var(--info)}
+.t-warn{background:var(--warn-soft);color:var(--warn)}
+.t-accent{background:var(--accent-soft);color:var(--accent)}
+.t-bad{background:var(--bad-soft);color:var(--bad)}
+.t-purple{background:var(--purple-soft);color:var(--purple)}
+.t-ink{background:var(--ink);color:var(--bg)}
+.t-muted{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.lang{display:inline-flex;align-items:center;gap:6px;font-size:13px}
+.lang code{min-width:26px;height:20px;padding:0 5px;border-radius:5px;border:1px solid currentColor;font:700 11px var(--sans);display:inline-grid;place-items:center}
+.l-vi{color:var(--ink-2)}.l-en{color:var(--info)}.l-zh{color:var(--warn)}.l-other{color:var(--muted)}
+.seg{display:inline-flex;padding:3px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);gap:2px}
+.seg button{min-height:34px;padding:0 12px;border:0;border-radius:8px;background:transparent;font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{min-height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--line-2);background:var(--surface);font-size:13px;font-weight:500;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600}
+.tag button{border:0;background:transparent;color:inherit;cursor:pointer;padding:0 0 0 2px;font-size:14px;line-height:1}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.kpi{padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.kpi b{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi span{font-size:13px;color:var(--muted)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters .input{width:auto;min-height:36px;padding:4px 10px}
+.search{min-width:220px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:980px}
+th{text-align:left;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;padding:10px 14px;background:var(--surface-2);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:var(--surface-2)}
+.who{display:flex;align-items:center;gap:10px;min-width:0}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:12px;font-weight:700;flex-shrink:0}
+.who b{display:block;font-weight:600}
+.who small{display:block;font-size:12px;color:var(--muted);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.score{display:flex;align-items:center;gap:8px;min-width:110px}
+.score b{width:28px;font-variant-numeric:tabular-nums}
+.bar{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:3px}
+.c-accent{color:var(--accent)}.c-warn{color:var(--warn)}.c-bad{color:var(--bad)}.c-muted{color:var(--muted)}
+.bg-accent{background:var(--accent)}.bg-warn{background:var(--warn)}.bg-bad{background:var(--bad)}.bg-muted{background:var(--line-2)}
+.empty{padding:40px 20px;text-align:center;color:var(--muted)}
+.sample-badge{font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 6px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line-2);color:var(--muted);margin-left:6px;vertical-align:middle}
+/* upload */
+.upload{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;align-items:stretch}
+.drop{border:1.5px dashed var(--accent-line);background:var(--accent-soft);border-radius:12px;display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;color:var(--accent);position:relative}
+.drop.over{border-style:solid;filter:brightness(.97)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop strong{display:block;font-size:14px}
+.drop span{font-size:12px;color:var(--ink-2)}
+.uplog{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.uplog div{display:flex;gap:8px;align-items:center;font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot.run{background:var(--warn);animation:pulse 1.2s infinite}
+.dot.ok{background:var(--accent)}.dot.err{background:var(--bad)}
+@keyframes pulse{50%{opacity:.3}}
+details summary{cursor:pointer;font-size:13px;color:var(--accent);font-weight:600}
+/* cv */
+.cv-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:start}
+.paper{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:28px 32px;white-space:pre-wrap;font-size:13.5px;line-height:1.7;max-height:70vh;overflow:auto;font-family:var(--sans)}
+.banner{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:10px;font-size:13px}
+.ring{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.ring>div{width:76px;height:76px;border-radius:50%;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring b{font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.ring small{font-size:11px;color:var(--muted)}
+.kv{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child{border-bottom:0}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+.pgrid .kv:last-child{border-bottom:1px dashed var(--line)}
+@media (max-width:560px){.pgrid{grid-template-columns:minmax(0,1fr)}}
+.kv span{color:var(--muted)}
+.kv b{font-weight:500;text-align:right;overflow-wrap:anywhere}
+ul.list{margin:0;padding-left:18px;font-size:13px;line-height:1.7}
+.stack{display:flex;flex-direction:column;gap:14px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+.mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mini{padding:10px 12px;border-radius:8px;background:var(--surface-2);display:flex;flex-direction:column;gap:2px}
+.mini span{font-size:12px;color:var(--muted)}
+.mini b{font-size:14px}
+.brk{display:grid;grid-template-columns:150px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:13px}
+.thinking{display:flex;gap:12px;align-items:center;padding:16px 18px;border-radius:12px;background:var(--warn-soft);color:var(--warn)}
+.spin{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .9s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* pipeline */
+.board{display:grid;grid-template-columns:repeat(5,minmax(220px,1fr));gap:14px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;min-height:240px}
+.col-head{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 6px;font-weight:600}
+.col-head i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px}
+.kcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.kcard .nm{font-weight:600;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:var(--ink)}
+.kcard .nm:hover{color:var(--accent);text-decoration:underline}
+/* interview */
+.iv-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;align-items:start}
+.iv-list button{width:100%;text-align:left;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.iv-list button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.rtabs{display:grid;gap:12px}
+.rtab{text-align:left;padding:12px 16px;border-radius:12px;border:2px solid var(--line);background:var(--surface-2);display:flex;align-items:center;gap:12px;cursor:pointer}
+.rtab[aria-pressed="true"]{border-color:var(--accent);background:var(--surface)}
+.rnum{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--line);color:var(--ink-2);flex-shrink:0}
+.rtab[aria-pressed="true"] .rnum{background:var(--accent);color:var(--accent-ink)}
+.iv-body{display:grid;grid-template-columns:360px minmax(0,1fr);gap:16px;align-items:start}
+.crit{display:grid;grid-template-columns:minmax(120px,1.1fr) auto minmax(140px,1.6fr);gap:12px;align-items:center;padding:8px 12px;border-top:1px solid var(--line)}
+.pills{display:flex;gap:4px}
+.pills button{width:32px;height:32px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface);font-weight:700;font-size:13px;cursor:pointer}
+.pills button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.person{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:10px}
+.final{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:16px 20px;border-radius:12px;border:1px solid var(--line)}
+.verdicts button{min-height:38px;padding:0 14px;border-radius:10px;border:2px solid var(--line);background:var(--surface);font-weight:700;font-size:13px;cursor:pointer}
+/* jobs */
+.jobs-grid{display:grid;grid-template-columns:260px minmax(0,1fr) 300px;gap:16px;align-items:start}
+.jobs-grid.two{grid-template-columns:minmax(0,1fr) 300px;scroll-margin-top:16px}
+.kpis5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.mini-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.jobs-table{min-width:900px}
+.jobs-table td:first-child{min-width:170px}
+.jobs-table th{white-space:normal}
+.jobs-table tr.sel td{background:var(--accent-soft)}
+.jobs-table tfoot td{background:var(--surface-2);border-bottom:0}
+.job-item{width:100%;text-align:left;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:flex;flex-direction:column;gap:6px}
+.job-item[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.aipanel{background:var(--side);color:var(--side-ink);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.aipanel h2{color:var(--side-strong)}
+.aipanel .btn{background:#E3EFED;color:#0F5E5A;border-color:#E3EFED}
+input[type=range]{width:100%;accent-color:var(--accent)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:13px;font-weight:500;max-width:min(560px,calc(100% - 32px));z-index:10;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 12px;border-radius:10px;background:var(--bad-soft);color:var(--bad);font-size:13px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:1180px){
+  .jobs-grid{grid-template-columns:240px minmax(0,1fr)}
+  .jobs-grid>.ai-col{grid-column:1/-1}
+  .jobs-grid.two{grid-template-columns:minmax(0,1fr)}
+  .kpis5{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .mini-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .iv-body{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:980px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{position:sticky;top:env(safe-area-inset-top,0px);height:auto;flex-direction:row;overflow-x:auto;padding:8px 12px;gap:4px;z-index:5}
+  .brand{padding:0 8px 0 0}.brand small,.side-foot{display:none}
+  .nav{white-space:nowrap;min-height:40px}
+  main{padding:18px 16px 40px}
+  .cv-grid,.iv-grid,.jobs-grid,.upload{grid-template-columns:minmax(0,1fr)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .grid2,.mini-grid{grid-template-columns:minmax(0,1fr)}
+  .crit{grid-template-columns:minmax(0,1fr)}
+  .brk{grid-template-columns:110px minmax(0,1fr) 40px}
+  .paper{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{margin:0}[hidden]{display:none!important}img{max-width:100%}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <nav class="side" aria-label="Điều hướng chính">
+    <div class="brand">
+      <div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11h5"/></svg></div>
+      <div><b>HR Recruitment</b><small>Tuyển dụng thông minh</small></div>
+    </div>
+    <a class="nav" href="#ung-vien" data-nav="ung-vien"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>CV &amp; Ứng viên<span class="count" id="n-cand"></span></a>
+    <a class="nav" href="#doc-cv" data-nav="doc-cv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>Đọc &amp; đánh giá CV</a>
+    <a class="nav" href="#quy-trinh" data-nav="quy-trinh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="5" height="18" rx="1"/><rect x="10" y="3" width="5" height="12" rx="1"/><rect x="17" y="3" width="4" height="8" rx="1"/></svg>Quy trình tuyển dụng</a>
+    <a class="nav" href="#phong-van" data-nav="phong-van"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>Phỏng vấn<span class="count" id="n-iv"></span></a>
+    <a class="nav" href="#vi-tri" data-nav="vi-tri"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Vị trí tuyển dụng<span class="count" id="n-job"></span></a>
+    <a class="nav" href="#cai-dat" data-nav="cai-dat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.9 4.9l2.1 2.1"/><path d="M17 17l2.1 2.1"/><path d="M4.9 19.1L7 17"/><path d="M17 7l2.1-2.1"/></svg>Cài đặt</a>
+    <div class="side-foot" id="side-foot"><b>Đang mở dữ liệu…</b></div>
+  </nav>
+  <main id="main" tabindex="-1"><div class="empty">Đang tải dữ liệu…</div></main>
+</div>
+<div id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(function(){
+"use strict";
+// ---------- helpers ----------
+const $ = (s, r = document) => r.querySelector(s);
+const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clone = o => JSON.parse(JSON.stringify(o));
+const STAGES = [
+  ['new','Mới nhận','info','#1F4E8C'],
+  ['screened','Đã sàng lọc','warn','#8A4209'],
+  ['interview','Phỏng vấn','accent','#0F5E5A'],
+  ['offer','Đề nghị','purple','#6B4FA0'],
+  ['hired','Đã tuyển','ink','#1B1D1C'],
+  ['rejected','Từ chối','bad','#A12B2B']
+];
+const STAGE = {}; STAGES.forEach(s => STAGE[s[0]] = {label:s[1], tone:s[2], dot:s[3]});
+const FLOW = ['new','screened','interview','offer','hired'];
+const LANGS = {vi:{code:'VI',name:'Tiếng Việt'}, en:{code:'EN',name:'Tiếng Anh'}, zh:{code:'中',name:'Tiếng Trung'}, other:{code:'?',name:'Ngôn ngữ khác'}};
+const CRIT = ['Kiến thức chuyên môn','Giải quyết vấn đề','Kỹ năng giao tiếp','Thái độ & phù hợp văn hóa','Ngoại ngữ'];
+const WKEYS = [['skill','Kỹ năng chuyên môn'],['exp','Kinh nghiệm'],['edu','Học vấn'],['lang','Ngoại ngữ']];
+const DEFAULT_W = {skill:50, exp:30, edu:10, lang:10};
+const JOB_STATUS = {'Đang tuyển':'accent','Nháp':'muted','Tạm dừng':'warn','Đã đóng':'bad'};
+const VERD = {'Đạt':'accent','Cân nhắc':'warn','Không đạt':'bad'};
+const initials = n => { const p = String(n || '?').trim().split(/\s+/); return ((p.length > 1 ? p[p.length-2][0] : '') + (p[p.length-1][0] || '')).toUpperCase(); };
+const tone = s => s == null ? 'muted' : s >= 85 ? 'accent' : s >= 70 ? 'warn' : 'bad';
+const fmtDate = ms => { if (!ms) return ''; const d = new Date(ms); return d.toLocaleDateString('vi-VN', {day:'2-digit', month:'2-digit', year:'numeric'}); };
+const fmtDay = iso => { if (!iso) return 'Chưa đặt ngày'; const [y,m,d] = iso.split('-'); return d + '/' + m + '/' + y; };
+const todayIso = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+const ICON = {
+  x:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>',
+  check:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>',
+  left:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',
+  right:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>',
+  up:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>',
+  spark:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg>',
+  tr:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg>'
+};
+
+// ---------- state ----------
+const S = {
+  view: 'ung-vien', db: null, assets: null, sample: null, downloads: null, canImages: false,
+  jobs: [], cands: [], ivs: {}, loaded: {jobs:false, cands:false, ivs:false},
+  f: {stage:'all', lang:'all', job:'all', q:'', sort:'score'},
+  selCand: null, cvMode: 'vi', selIv: null, ivRound: 1, selJob: null, jobDraft: null,
+  pipeJob: 'all', running: {}, upLog: [], imgCache: {}, confirm: null, pending: false, offline: false
+};
+S.aiMode = 'manual'; S.editEval = null; S.evalDraft = null;
+try { const v = JSON.parse(localStorage.getItem('talentai-ui') || '{}'); if (v.selCand) S.selCand = v.selCand; if (v.selIv) S.selIv = v.selIv; if (v.selJob) S.selJob = v.selJob; if (v.aiMode === 'auto') S.aiMode = 'auto'; } catch (e) {}
+function remember(){ try { localStorage.setItem('talentai-ui', JSON.stringify({selCand:S.selCand, selIv:S.selIv, selJob:S.selJob, aiMode:S.aiMode})); } catch (e) {} }
+const useAI = () => !!S.sample && S.aiMode === 'auto';
+const VERDICTS = ['Rất phù hợp','Phù hợp','Cân nhắc','Chưa phù hợp'];
+function openEval(c){
+  const a = c.analysis || {};
+  const j = job(c.jobId);
+  const must = (j && j.must) || [];
+  const b = a.breakdown || {};
+  S.editEval = c.id;
+  S.evalDraft = {
+    name: c.name || '', email: c.email || a.email || '', phone: c.phone || a.phone || '', title: a.title || '', location: a.location || '',
+    years: a.yearsExperience == null || isNaN(a.yearsExperience) ? '' : String(a.yearsExperience), education: a.education || '',
+    lang: c.lang || 'vi', skill: b.skill != null ? String(b.skill) : '', exp: b.exp != null ? String(b.exp) : '', edu: b.edu != null ? String(b.edu) : '', langs: b.lang != null ? String(b.lang) : '',
+    verdict: a.verdict || '', summary: a.summary || '', skills: (a.skills || []).join(', '),
+    strengths: (a.strengths || []).join('\n'), concerns: (a.concerns || []).join('\n'),
+    must: must.map(m => ({name: m, ok: a.matched ? a.matched.includes(m) : false}))
+  };
+}
+function evalScore(d, w){
+  const tw = WKEYS.reduce((s, k) => s + (Number(w[k[0]]) || 0), 0) || 100;
+  const v = {skill: d.skill, exp: d.exp, edu: d.edu, lang: d.langs};
+  if (WKEYS.every(k => v[k[0]] === '')) return null;
+  return Math.round(WKEYS.reduce((s, k) => s + Math.max(0, Math.min(100, Number(v[k[0]]) || 0)) * (Number(w[k[0]]) || 0), 0) / tw);
+}
+async function saveEval(){
+  const c = cand(S.editEval); const d = S.evalDraft; if (!c || !d) return;
+  const j = job(c.jobId); const w = (j && j.weights) || DEFAULT_W;
+  const score = evalScore(d, w);
+  if (score == null) { toast('Nhập ít nhất một điểm tiêu chí (0–100).'); return; }
+  if (!d.name.trim()) { toast('Nhập họ tên ứng viên.'); return; }
+  const lines = s => s.split('\n').map(x => x.trim()).filter(Boolean).slice(0, 10);
+  const clamp = x => x === '' ? 0 : Math.max(0, Math.min(100, Math.round(Number(x) || 0)));
+  const prev = c.analysis;
+  const a = {
+    source: prev && prev.source !== 'manual' ? 'ai-edited' : 'manual',
+    language: d.lang, languageConfidence: null, name: d.name.trim().slice(0, 120), title: d.title.slice(0, 160), email: d.email.slice(0, 160), phone: d.phone.slice(0, 60),
+    location: d.location.slice(0, 120), yearsExperience: d.years === '' ? null : Number(d.years), education: d.education.slice(0, 300),
+    skills: d.skills.split(',').map(x => x.trim()).filter(Boolean).slice(0, 15),
+    breakdown: {skill: clamp(d.skill), exp: clamp(d.exp), edu: clamp(d.edu), lang: clamp(d.langs)}, score: score,
+    verdict: d.verdict, summary: d.summary.slice(0, 600),
+    matched: d.must.filter(m => m.ok).map(m => m.name), missing: d.must.filter(m => !m.ok).map(m => m.name),
+    strengths: lines(d.strengths), concerns: lines(d.concerns), weights: w, jobTitle: j ? j.title : ''
+  };
+  const patch = {analysis: a, score: score, lang: d.lang, name: a.name, email: a.email, phone: a.phone, autoName: false, analyzedAt: Date.now()};
+  if (c.stage === 'new') patch.stage = 'screened';
+  await saveCand(c.id, patch);
+  S.editEval = null; S.evalDraft = null;
+  toast('Đã lưu đánh giá cho ' + a.name + '.');
+  render(true);
+}
+
+const cand = id => S.cands.find(c => c.id === id);
+const job = id => S.jobs.find(j => j.id === id);
+const jobTitle = id => { const j = job(id); return j ? j.title : 'Chưa chọn vị trí'; };
+
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 4200); }
+function aiErr(e){
+  const c = e && e.code;
+  if (c === 'not_granted' || c === 'sampling_disabled' || c === 'not_declared' || c === 'capability_disabled') return 'AI chưa được cho phép trên trang này. Tải lại trang và chọn Cho phép khi được hỏi.';
+  if (c === 'rate_limited') return 'AI đang bận hoặc bạn đã chạm giới hạn sử dụng. Thử lại sau ít phút.';
+  if (c === 'invalid_json' || c === 'empty_completion') return 'AI trả lời chưa đúng định dạng. Bấm Phân tích lại để thử lần nữa.';
+  if (c === 'prompt_too_large') return 'CV quá dài để phân tích một lần. Hãy dán phần nội dung chính của CV.';
+  if (c === 'image_rejected') return 'Ảnh CV không đọc được. Hãy dùng ảnh JPG/PNG rõ nét hơn.';
+  if (c === 'refused') return 'AI từ chối xử lý nội dung này.';
+  if (c === 'cancelled') return 'Đã dừng phân tích.';
+  if (c === 'session_expired') return 'Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại.';
+  return 'Không kết nối được AI. Thử lại sau.';
+}
+function dbErr(e){
+  const c = e && e.code;
+  if (c === 'quota_exceeded') return 'Kho dữ liệu đã đầy. Hãy xóa bớt ứng viên cũ rồi thử lại.';
+  if (c === 'resource_exhausted') return 'Thao tác quá nhanh. Đợi vài giây rồi thử lại.';
+  if (c === 'invalid_argument') return 'Dữ liệu quá lớn hoặc không hợp lệ nên chưa lưu được.';
+  return 'Chưa lưu được dữ liệu. Kiểm tra kết nối và thử lại.';
+}
+
+// ---------- db writes ----------
+async function saveCand(id, patch){ if (!S.db) return toast('Chưa kết nối kho dữ liệu.'); try { await S.db.doc('candidates/' + id).update(patch); } catch (e) { toast(dbErr(e)); } }
+async function saveIv(id, doc){ if (!S.db) return; S.ivs[id] = doc; try { await S.db.doc('interviews/' + id).set(doc); } catch (e) { toast(dbErr(e)); } }
+function newRound(i){ return {kind: i === 0 ? 'Phỏng vấn chuyên môn' : 'Phỏng vấn với quản lý & HR', date:'', start:'', end:'', mode:'Online', place:'', people:[], scores:[0,0,0,0,0], comments:['','','','',''], strengths:'', improve:'', summary:'', verdict:''}; }
+function ivOf(id){ const d = S.ivs[id]; if (d && Array.isArray(d.r)) { while (d.r.length < 2) d.r.push(newRound(d.r.length)); return d; } return {rounds:2, r:[newRound(0), newRound(1)]}; }
+
+// ---------- text extraction ----------
+async function pdfDoc(file){
+  if (!window.pdfjsLib) throw new Error('pdf');
+  const buf = await file.arrayBuffer();
+  return window.pdfjsLib.getDocument({data: buf, isEvalSupported: false, disableFontFace: true}).promise;
+}
+async function pdfText(pdf){
+  let out = [];
+  for (let i = 1; i <= Math.min(pdf.numPages, 12); i++) {
+    const page = await pdf.getPage(i);
+    const tc = await page.getTextContent();
+    let line = '';
+    tc.items.forEach(it => { line += it.str; line += it.hasEOL ? '\n' : ' '; });
+    out.push(line.replace(/[ \t]+\n/g, '\n').replace(/ {2,}/g, ' '));
+  }
+  return out.join('\n\n').trim();
+}
+async function pdfImages(pdf){
+  const blobs = [];
+  for (let i = 1; i <= Math.min(pdf.numPages, 2); i++) {
+    const page = await pdf.getPage(i);
+    const vp = page.getViewport({scale: 1.6});
+    const cv = document.createElement('canvas'); cv.width = vp.width; cv.height = vp.height;
+    await page.render({canvasContext: cv.getContext('2d'), viewport: vp}).promise;
+    blobs.push(await new Promise(r => cv.toBlob(r, 'image/png')));
+  }
+  return blobs.filter(Boolean);
+}
+function mimeOf(file){
+  const ext = (file.name.split('.').pop() || '').toLowerCase();
+  return {pdf:'application/pdf', txt:'text/plain', png:'image/png', jpg:'image/jpeg', jpeg:'image/jpeg', webp:'image/webp', docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}[ext] || file.type || '';
+}
+const nameFromFile = n => n.replace(/\.[^.]+$/, '').replace(/[_\-]+/g, ' ').replace(/\b(cv|resume|CV|Resume)\b/g, '').trim() || 'Ứng viên mới';
+
+// ---------- AI ----------
+function buildPrompt(c, j, hasImages){
+  const w = (j && j.weights) || DEFAULT_W;
+  const jd = j ? [
+    'VỊ TRÍ: ' + j.title, j.level ? 'CẤP BẬC: ' + j.level : '', j.exp ? 'KINH NGHIỆM TỐI THIỂU: ' + j.exp : '',
+    'MÔ TẢ CÔNG VIỆC:\n' + (j.jd || '(chưa có)').slice(0, 4000), 'YÊU CẦU:\n' + (j.req || '(chưa có)').slice(0, 3000),
+    'KỸ NĂNG BẮT BUỘC: ' + ((j.must || []).join(', ') || '(chưa có)'), 'KỸ NĂNG ƯU TIÊN: ' + ((j.nice || []).join(', ') || '(chưa có)')
+  ].filter(Boolean).join('\n') : 'Chưa gắn vị trí cụ thể: đánh giá chất lượng hồ sơ nói chung.';
+  const cvPart = c.cvText ? 'NỘI DUNG CV:\n"""\n' + c.cvText.slice(0, 18000) + '\n"""' : (hasImages ? 'CV nằm trong ảnh đính kèm. Hãy đọc toàn bộ chữ trong ảnh.' : 'CV trống.');
+  return 'Bạn là chuyên viên tuyển dụng người Việt. Đọc CV (có thể viết bằng tiếng Việt, tiếng Anh hoặc tiếng Trung) và đánh giá mức độ phù hợp với vị trí.\n\n' + jd +
+    '\n\nTRỌNG SỐ: kỹ năng ' + w.skill + '%, kinh nghiệm ' + w.exp + '%, học vấn ' + w.edu + '%, ngoại ngữ ' + w.lang + '%.\n\n' + cvPart +
+    '\n\nTrả lời CHỈ bằng một đối tượng JSON đúng cấu trúc sau. Mọi giá trị chữ viết bằng tiếng Việt; tên riêng, tên công ty và tên công nghệ giữ nguyên.\n' +
+    '{"language":"vi|en|zh|other","languageConfidence":0-100,"name":"họ tên ứng viên","title":"chức danh hiện tại","email":"","phone":"","location":"","yearsExperience":số năm hoặc null,"education":"bằng cấp cao nhất, trường","skills":["tối đa 12 kỹ năng"],' +
+    '"scoreBreakdown":{"skill":0-100,"exp":0-100,"edu":0-100,"lang":0-100},"verdict":"Rất phù hợp|Phù hợp|Cân nhắc|Chưa phù hợp","summary":"1-2 câu nhận định","matched":["kỹ năng bắt buộc đáp ứng"],"missing":["kỹ năng bắt buộc còn thiếu"],"strengths":["2-4 ý"],"concerns":["1-3 ý"],' +
+    '"translationVi":"toàn bộ CV dịch sang tiếng Việt, giữ nguyên thứ tự các mục, mỗi mục bắt đầu bằng tiêu đề viết hoa, xuống dòng bằng \\n; để chuỗi rỗng nếu CV gốc là tiếng Việt","originalText":"chỉ khi CV nằm trong ảnh: chép lại chữ gốc; nếu không để chuỗi rỗng"}';
+}
+const arr = v => Array.isArray(v) ? v.map(x => String(x)).filter(Boolean).slice(0, 15) : [];
+const num = (v, d) => { const n = Number(v); return isFinite(n) ? Math.max(0, Math.min(100, Math.round(n))) : d; };
+function normalize(r, j){
+  const w = (j && j.weights) || DEFAULT_W;
+  const b = r && r.scoreBreakdown || {};
+  const br = {skill:num(b.skill,0), exp:num(b.exp,0), edu:num(b.edu,0), lang:num(b.lang,0)};
+  const tw = WKEYS.reduce((s, k) => s + (Number(w[k[0]]) || 0), 0) || 100;
+  const score = Math.round(WKEYS.reduce((s, k) => s + br[k[0]] * (Number(w[k[0]]) || 0), 0) / tw);
+  const lang = ['vi','en','zh'].includes(r.language) ? r.language : 'other';
+  return {
+    language: lang, languageConfidence: num(r.languageConfidence, null), name: String(r.name || '').slice(0,120), title: String(r.title || '').slice(0,160),
+    email: String(r.email || '').slice(0,160), phone: String(r.phone || '').slice(0,60), location: String(r.location || '').slice(0,120),
+    yearsExperience: r.yearsExperience == null || r.yearsExperience === '' ? null : Number(r.yearsExperience),
+    education: String(r.education || '').slice(0,300), skills: arr(r.skills), breakdown: br, score: score,
+    verdict: String(r.verdict || ''), summary: String(r.summary || '').slice(0,600), matched: arr(r.matched), missing: arr(r.missing),
+    strengths: arr(r.strengths), concerns: arr(r.concerns), weights: w, jobTitle: j ? j.title : ''
+  };
+}
+async function analyze(id, local){
+  const c = local || cand(id);
+  if (!c) return;
+  if (!S.sample) { toast('Chưa kết nối AI. Vào Cài đặt để nhập API key, hoặc tự đánh giá CV.'); return; }
+  const j = job(c.jobId);
+  const ctl = new AbortController();
+  S.running[id] = {ctl};
+  render(true);
+  try {
+    let images = S.imgCache[id];
+    if (!c.cvText && !images && c.file && c.file.assetId && /^image\//.test(c.file.type) && S.canImages) {
+      try { const bb = await S.assets.get(c.file.assetId); if (bb) images = [bb]; } catch (e) {}
+    }
+    if (!c.cvText && !images) { toast('Không có nội dung CV để phân tích. Hãy tải lại file hoặc dán nội dung.'); return; }
+    if (images && !S.canImages) { toast('Chế độ xem này chưa hỗ trợ AI đọc ảnh. Hãy dán nội dung CV dạng chữ.'); return; }
+    const res = await S.sample.json(buildPrompt(c, j, !!images), {signal: ctl.signal, images: images || undefined, cache: false});
+    const a = normalize(res || {}, j);
+    const patch = {analysis: a, score: a.score, lang: a.language, analyzedAt: Date.now(),
+      translationVi: String(res.translationVi || '').slice(0, 30000)};
+    if (!c.cvText && res.originalText) patch.cvText = String(res.originalText).slice(0, 20000);
+    if (!(c.profile && c.profile.edited)) {
+      const src = patch.cvText || c.cvText;
+      const pf = c.profile ? clone(c.profile) : (src ? parseCV(src) : {languages: [], skills: []});
+      if (!pf.name && a.name) pf.name = a.name;
+      if (!pf.email && a.email) pf.email = a.email;
+      if (!pf.phone && a.phone) pf.phone = a.phone;
+      if (!pf.address && a.location) pf.address = a.location;
+      if ((pf.years == null || pf.years === '') && a.yearsExperience != null && !isNaN(a.yearsExperience)) pf.years = a.yearsExperience;
+      if (!pf.school && a.education) pf.school = a.education;
+      if ((!pf.skills || !pf.skills.length) && a.skills.length) pf.skills = a.skills;
+      pf.lang = a.language || pf.lang;
+      patch.profile = pf;
+    }
+    if (a.name && (c.autoName !== false)) patch.name = a.name;
+    if (a.email) patch.email = a.email;
+    if (a.phone) patch.phone = a.phone;
+    if (c.stage === 'new') patch.stage = 'screened';
+    await saveCand(id, patch);
+    toast('AI đã phân tích xong CV của ' + (patch.name || c.name) + '.');
+  } catch (e) {
+    if (e && e.code) toast(aiErr(e)); else toast('Phân tích chưa hoàn tất. Thử lại sau.');
+  } finally { delete S.running[id]; render(true); }
+}
+async function analyzeJD(){
+  const d = S.jobDraft; if (!d) return;
+  if (!S.sample) return toast('Chưa kết nối AI. Vào Cài đặt để nhập API key.');
+  if (!(d.jd || '').trim() && !(d.req || '').trim()) return toast('Nhập mô tả công việc hoặc yêu cầu trước khi phân tích.');
+  S.jdBusy = true; render(true);
+  try {
+    const r = await S.sample.json('Đọc mô tả công việc dưới đây (có thể là tiếng Việt, Anh hoặc Trung) và trích xuất tiêu chí chấm CV. Trả lời CHỈ bằng JSON: {"must":["3-8 kỹ năng/điều kiện bắt buộc, ngắn gọn"],"nice":["2-6 kỹ năng ưu tiên"],"minExperience":"ví dụ: 3 năm, hoặc chuỗi rỗng","level":"Thực tập|Junior|Middle|Senior|Trưởng nhóm|chuỗi rỗng"}. Viết bằng tiếng Việt, tên công nghệ giữ nguyên.\n\nVỊ TRÍ: ' + (d.title || '') + '\nMÔ TẢ:\n' + (d.jd || '').slice(0, 6000) + '\nYÊU CẦU:\n' + (d.req || '').slice(0, 4000), {cache: false});
+    d.must = arr(r.must); d.nice = arr(r.nice);
+    if (!d.exp && r.minExperience) d.exp = String(r.minExperience);
+    if (!d.level && r.level) d.level = String(r.level);
+    toast('Đã tạo tiêu chí từ JD. Bấm Lưu vị trí để giữ lại.');
+  } catch (e) { toast(aiErr(e)); }
+  finally { S.jdBusy = false; render(true); }
+}
+
+// ---------- upload ----------
+async function handleFiles(files){
+  if (!S.db) return toast('Chưa kết nối kho dữ liệu, chưa thể thêm CV.');
+  const jobId = ($('#up-job') || {}).value || '';
+  for (const file of Array.from(files)) {
+    const log = {name: file.name, state:'run', msg:'Đang đọc file…'};
+    S.upLog.unshift(log); S.upLog = S.upLog.slice(0, 6); render(true);
+    try {
+      const mime = mimeOf(file);
+      let text = '', images = null;
+      if (mime === 'application/pdf') {
+        const pdf = await pdfDoc(file);
+        text = await pdfText(pdf);
+        if (text.replace(/\s/g, '').length < 80) { log.msg = 'PDF dạng ảnh, đang chuyển trang thành ảnh…'; render(true); images = await pdfImages(pdf); text = ''; }
+      } else if (/wordprocessingml/.test(mime)) {
+        if (!window.mammoth) throw new Error('docx');
+        text = (await window.mammoth.extractRawText({arrayBuffer: await file.arrayBuffer()})).value.trim();
+      } else if (mime === 'text/plain') {
+        text = (await file.text()).trim();
+      } else if (/^image\//.test(mime)) {
+        images = [file];
+      } else { throw new Error('type'); }
+      let assetId = null;
+      if (S.assets) {
+        log.msg = 'Đang lưu file gốc…'; render(true);
+        try { const up = await S.assets.upload(file, {type: mime}); assetId = up.id; } catch (e) { /* keep going without the original */ }
+      }
+      const ref = S.db.collection('candidates').doc();
+      const prof = text ? parseCV(text) : null;
+      const doc = {name: (prof && prof.name) || nameFromFile(file.name), autoName: !(prof && prof.name), email: (prof && prof.email) || '', phone: (prof && prof.phone) || '', jobId: jobId, stage:'new', score:null, lang: prof ? prof.lang : '',
+        file:{name: file.name, type: mime, assetId: assetId}, cvText: text.slice(0, 20000), translationVi:'', note:'', createdAt: Date.now(), profile: prof};
+      await ref.set(doc);
+      if (images) S.imgCache[ref.id] = images;
+      if (useAI()) { log.msg = 'AI đang đọc và chấm điểm CV (30–90 giây)…'; render(true); await analyze(ref.id, Object.assign({id: ref.id}, doc)); }
+      log.state = 'ok'; log.msg = useAI() ? 'Đã thêm và phân tích xong' : 'Đã lưu CV. Mở CV để tự đánh giá.';
+    } catch (e) {
+      log.state = 'err';
+      log.msg = e && e.message === 'type' ? 'Định dạng chưa hỗ trợ. Dùng PDF, DOCX, TXT hoặc ảnh.' : e && e.code ? dbErr(e) : 'Không đọc được file này. Thử dán nội dung CV.';
+    }
+    render(true);
+  }
+}
+async function addPasted(){
+  const ta = $('#up-text'); const text = (ta && ta.value || '').trim();
+  if (text.length < 40) return toast('Nội dung CV quá ngắn. Hãy dán toàn bộ CV.');
+  if (!S.db) return toast('Chưa kết nối kho dữ liệu.');
+  const jobId = ($('#up-job') || {}).value || '';
+  const log = {name:'Nội dung dán', state:'run', msg:'Đang lưu…'}; S.upLog.unshift(log); render(true);
+  try {
+    const ref = S.db.collection('candidates').doc();
+    const prof = parseCV(text);
+    const doc = {name: prof.name || 'Ứng viên mới', autoName: !prof.name, email: prof.email || '', phone: prof.phone || '', jobId, stage:'new', score:null, lang: prof.lang, file:null, cvText:text.slice(0,20000), translationVi:'', note:'', createdAt:Date.now(), profile: prof};
+    await ref.set(doc);
+    if (useAI()) { log.msg = 'AI đang đọc và chấm điểm CV…'; render(true); await analyze(ref.id, Object.assign({id:ref.id}, doc)); }
+    log.state = 'ok'; log.msg = useAI() ? 'Đã thêm và phân tích xong' : 'Đã lưu CV. Mở CV để tự đánh giá.';
+  } catch (e) { log.state = 'err'; log.msg = dbErr(e); }
+  render(true);
+}
+
+// ---------- CV field extraction (no AI) ----------
+const CV_SECTIONS = [
+  ['objective', /^(mục tiêu( nghề nghiệp)?|giới thiệu( bản thân)?|tóm tắt( bản thân)?|career objectives?|objectives?|summary|professional summary|profile|about me|自我评价|个人简介|职业目标)/i],
+  ['experience', /^(kinh nghiệm( làm việc)?|quá trình (làm việc|công tác)|lịch sử làm việc|work experience|experiences?|employment( history)?|professional experience|work history|工作经历|工作经验|实习经历)/i],
+  ['education', /^(học vấn|trình độ học vấn|quá trình học tập|đào tạo|education|academic background|educational background|教育背景|教育经历|学历)/i],
+  ['skills', /^(kỹ năng|kĩ năng|skills?|technical skills|core competencies|competencies|专业技能|技能特长|技能)/i],
+  ['languages', /^(ngoại ngữ|ngôn ngữ|languages?|语言能力|外语水平|语言)/i],
+  ['certs', /^(chứng chỉ|chứng nhận|bằng cấp|giải thưởng|thành tích|certificates?|certifications?|awards?|achievements?|证书|资格证书|获奖情况|荣誉)/i],
+  ['projects', /^(dự án|projects?|项目经历|项目经验)/i],
+  ['other', /^(hoạt động|sở thích|người tham chiếu|người giới thiệu|thông tin (thêm|khác)|activities|hobbies|interests|references?|兴趣爱好|其他信息|其他)/i],
+  ['personal', /^(thông tin cá nhân|thông tin liên hệ|personal (information|details|info)|contact( information| info)?|liên hệ|个人信息|基本信息|联系方式)/i]
+];
+const CV_FIELDS = [
+  ['name', /^(họ và tên|họ tên|full name|name|姓名)\s*[:：]/i],
+  ['dob', /^(ngày sinh|ngày tháng năm sinh|năm sinh|sinh ngày|date of birth|d\.?o\.?b\.?|birthday|birth date|出生日期|出生年月|生日)\s*[:：\-]?/i],
+  ['gender', /^(giới tính|gender|sex|性别)\s*[:：\-]?/i],
+  ['phone', /^(số điện thoại|điện thoại|sđt|đt|di động|phone( number)?|mobile|tel|电话|手机|联系电话)\s*[:：\-]?/i],
+  ['email', /^(email|e-mail|thư điện tử|邮箱|电子邮件)\s*[:：\-]?/i],
+  ['address', /^(địa chỉ( liên hệ| thường trú| hiện tại)?|nơi ở( hiện tại)?|chỗ ở|quê quán|address|location|地址|现居住地|居住地|籍贯)\s*[:：\-]?/i],
+  ['position', /^(vị trí ứng tuyển|vị trí mong muốn|vị trí|ứng tuyển|position( applied( for)?)?|applying for|desired position|求职岗位|应聘职位|意向岗位|求职意向)\s*[:：\-]/i],
+  ['major', /^(chuyên ngành|ngành học|ngành|major|专业)\s*[:：\-]/i],
+  ['marital', /^(tình trạng hôn nhân|hôn nhân|marital status|婚姻状况)\s*[:：\-]?/i]
+];
+const EDU_LEVELS = [
+  ['Tiến sĩ', /tiến sĩ|ph\.?\s?d\b|doctor(ate)? of|博士/i],
+  ['Thạc sĩ', /thạc sĩ|master|\bmba\b|\bm\.?sc\b|硕士|研究生/i],
+  ['Đại học', /cử nhân|kỹ sư|kĩ sư|đại học|bachelor|\bb\.?sc\b|\bb\.?a\b|university|本科|学士|大学/i],
+  ['Cao đẳng', /cao đẳng|college|associate degree|大专|专科/i],
+  ['Trung cấp', /trung cấp|vocational|中专|技校/i],
+  ['THPT', /thpt|trung học phổ thông|high school|高中/i]
+];
+const LANG_DEFS = [
+  ['Tiếng Anh', /tiếng anh|english|英语|英文/i, [[/ielts\s*(?:academic|general)?\s*[:\-]?\s*(\d(?:[.,]\d)?)/i, 'IELTS '], [/toeic\s*[:\-]?\s*(\d{3})/i, 'TOEIC '], [/toefl\s*(?:ibt|itp)?\s*[:\-]?\s*(\d{2,3})/i, 'TOEFL '], [/(cambridge\s*(?:b1|b2|c1|c2|pet|fce|cae))/i, ''], [/(cet[\s\-]?[46])/i, '']]],
+  ['Tiếng Trung', /tiếng trung|tiếng hoa|chinese|mandarin|中文|汉语|普通话/i, [[/hsk\s*(?:cấp|level|级)?\s*[:\-]?\s*(\d)/i, 'HSK '], [/tocfl\s*[:\-]?\s*(\w+)/i, 'TOCFL ']]],
+  ['Tiếng Nhật', /tiếng nhật|japanese|日语|日文/i, [[/(?:jlpt\s*)?\b(n[1-5])\b/i, 'JLPT ']]],
+  ['Tiếng Hàn', /tiếng hàn|korean|韩语/i, [[/topik\s*(?:cấp|level|级)?\s*[:\-]?\s*(\d)/i, 'TOPIK ']]],
+  ['Tiếng Pháp', /tiếng pháp|french|法语/i, [[/(delf\s*[abc][12]|dalf\s*c[12])/i, '']]],
+  ['Tiếng Đức', /tiếng đức|german|德语/i, [[/(goethe[\s\-]*zertifikat\s*[abc][12])/i, '']]]
+];
+const LEVEL_WORDS = /(bản ngữ|lưu loát|thành thạo|thông thạo|khá|trung bình|cơ bản|giao tiếp tốt|giao tiếp|đọc hiểu|native|fluent|proficient|advanced|upper[\s-]intermediate|intermediate|basic|elementary|conversational|母语|流利|熟练|良好|一般|基础)/i;
+const NOT_NAME = /^(curriculum vitae|cv|resume|résumé|sơ yếu lý lịch|hồ sơ (xin việc|ứng viên)|thông tin cá nhân|个人简历|简历|求职简历)$/i;
+function titleCaseVi(s){ return s.toLocaleLowerCase('vi').replace(/(^|\s)(\S)/g, (m, a, b) => a + b.toLocaleUpperCase('vi')); }
+function detectLang(text){
+  const t = text.slice(0, 6000);
+  const cjk = (t.match(/[一-鿿]/g) || []).length;
+  const letters = (t.match(/\p{L}/gu) || []).length || 1;
+  if (cjk / letters > 0.15) return 'zh';
+  const vi = (t.match(/[ăâđêôơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]/gi) || []).length;
+  if (vi / letters > 0.02) return 'vi';
+  return 'en';
+}
+function parseCV(text){
+  const P = {languages: [], skills: []};
+  const lines = String(text || '').split(/\r?\n/).map(l => l.replace(/[ \t ]+/g, ' ').trim()).filter(Boolean);
+  const secs = {}; let cur = null; const head = [];
+  lines.forEach((line, idx) => {
+    const clean = line.replace(/^[#*•●▪■◆►✓\-–\s]+/, '').replace(/^([IVX]+|\d+)[.)]\s+/, '');
+    if (clean.length <= 60) {
+      for (const kv of CV_SECTIONS) {
+        const m = clean.match(kv[1]);
+        if (m) {
+          const after = clean.slice(m[0].length);
+          const rest = after.replace(/^[\s:：\-–|]+/, '').trim();
+          if (!rest) { cur = kv[0]; secs[cur] = secs[cur] || []; return; }
+          if (/^\s*[:：]/.test(after) && kv[0] !== 'personal') { cur = kv[0]; (secs[cur] = secs[cur] || []).push(rest); return; }
+        }
+      }
+    }
+    let used = false;
+    line.split(/\s+[|•·]\s+|\t| {3,}/).forEach(seg => {
+      seg = seg.trim();
+      for (const kv of CV_FIELDS) {
+        if (P[kv[0]]) continue;
+        const m = seg.match(kv[1]);
+        if (m) { const v = seg.slice(m[0].length).replace(/^[\s:：\-]+/, '').trim(); if (v && v.length < 160) { P[kv[0]] = v; used = true; } break; }
+      }
+    });
+    if (!cur && idx < 12) head.push(line);
+    if (cur && !used) (secs[cur] = secs[cur] || []).push(line);
+  });
+  const all = lines.join('\n');
+  const email = all.match(/[\w.+-]+@[\w-]+(\.[\w-]+)+/);
+  if (email) P.email = email[0]; else if (P.email) P.email = P.email.split(/\s/)[0];
+  const phone = all.match(/(?:\+?84|\b0)(?:[\s.\-]?\d){9,10}\b/) || all.match(/(?:\+?86[\s\-]?)?\b1[3-9]\d(?:[\s\-]?\d){8}\b/) || all.match(/\+?\d[\d\s.\-()]{8,16}\d/);
+  if (P.phone) { const pm = P.phone.match(/\+?[\d][\d\s.\-()]{7,18}\d/); P.phone = pm ? pm[0] : P.phone; }
+  else if (phone) P.phone = phone[0];
+  if (P.phone) P.phone = P.phone.replace(/[^\d+]/g, '').replace(/^(\+?84|0)(\d{3})(\d{3})(\d+)$/, (m, a, b, c, d) => (a === '0' ? '0' + b : a + ' ' + b) + ' ' + c + ' ' + d);
+  if (!P.name) {
+    for (const l of head) {
+      const s = l.replace(/^[#*•\-\s]+/, '').trim();
+      if (NOT_NAME.test(s) || /[@\d:：|/]/.test(s) || s.length > 40) continue;
+      if (CV_SECTIONS.some(kv => kv[1].test(s))) continue;
+      if (/^[一-鿿]{2,4}$/.test(s)) { P.name = s; break; }
+      const w = s.split(/\s+/);
+      if (w.length >= 2 && w.length <= 6 && w.every(x => /^\p{Lu}/u.test(x) || x === x.toLocaleUpperCase('vi'))) { P.name = s; break; }
+    }
+  }
+  if (P.name) { P.name = P.name.replace(/\s*[|,].*$/, '').trim(); if (P.name === P.name.toLocaleUpperCase('vi') && /\p{L}/u.test(P.name) && !/[一-鿿]/.test(P.name)) P.name = titleCaseVi(P.name); }
+  if (!P.dob) { const d = head.join(' ').match(/\b(\d{1,2}[\/\-.]\d{1,2}[\/\-.](?:19|20)\d{2})\b/) || head.join(' ').match(/((?:19|20)\d{2})年\d{1,2}月(\d{1,2}日)?/); if (d) P.dob = d[0]; }
+  if (P.dob) { const y = P.dob.match(/(19|20)\d{2}/); if (y) { const age = new Date().getFullYear() - Number(y[0]); if (age > 14 && age < 80) P.age = age; } }
+  if (P.gender) P.gender = /nữ|female|女|\bf\b/i.test(P.gender) ? 'Nữ' : /nam|male|男|\bm\b/i.test(P.gender) ? 'Nam' : P.gender;
+  // experience years
+  const expText = (secs.experience || []).join('\n') || all;
+  const nowY = new Date().getFullYear() + new Date().getMonth() / 12;
+  const re = /(?:(0?[1-9]|1[0-2])[\/.\-])?((?:19|20)\d{2})(?:年(?:\d{1,2}月)?)?\s*(?:-|–|—|~|to|đến|tới|至)\s*(?:(?:(0?[1-9]|1[0-2])[\/.\-])?((?:19|20)\d{2})(?:年(?:\d{1,2}月)?)?|(nay|hiện tại|hiện nay|present|now|current|today|至今|今))/gi;
+  const iv = []; let m;
+  while ((m = re.exec(expText))) {
+    const s = Number(m[2]) + (m[1] ? (Number(m[1]) - 1) / 12 : 0);
+    const e = m[5] ? nowY : Number(m[4]) + (m[3] ? (Number(m[3]) - 1) / 12 : 0.99);
+    if (e >= s && e - s < 45) iv.push([s, e]);
+  }
+  const re2 = /((?:19|20)\d{2})[.\/年](0?[1-9]|1[0-2])月?\s*(?:-|–|—|~|to|đến|至)\s*(?:((?:19|20)\d{2})[.\/年](0?[1-9]|1[0-2])月?|(nay|hiện tại|present|now|至今|今))/gi;
+  if (!iv.length) { while ((m = re2.exec(expText))) { const s0 = Number(m[1]) + (Number(m[2]) - 1) / 12; const e0 = m[5] ? nowY : Number(m[3]) + (Number(m[4]) - 1) / 12; if (e0 >= s0 && e0 - s0 < 45) iv.push([s0, e0]); } }
+  if (iv.length && secs.experience) {
+    iv.sort((a, b) => a[0] - b[0]);
+    let tot = 0, cs = iv[0][0], ce = iv[0][1];
+    iv.slice(1).forEach(x => { if (x[0] <= ce) ce = Math.max(ce, x[1]); else { tot += ce - cs; cs = x[0]; ce = x[1]; } });
+    tot += ce - cs;
+    P.years = Math.round(tot * 2) / 2;
+  } else {
+    const y = all.match(/(\d{1,2}(?:[.,]5)?)\+?\s*(năm kinh nghiệm|years? of (?:work |professional )?experience|年(?:以上)?(?:工作)?经验)/i);
+    if (y) P.years = Number(y[1].replace(',', '.'));
+  }
+  // education
+  const eduText = (secs.education || []).join('\n') || all;
+  for (const lv of EDU_LEVELS) if (lv[1].test(eduText)) { P.eduLevel = lv[0]; break; }
+  const school = (secs.education || []).find(l => /(đại học|trường|học viện|cao đẳng|university|college|institute|academy|school|大学|学院)/i.test(l));
+  if (school) { const segs = school.split(/\s+[|–—-]\s+|\s*\|\s*/); const hit = segs.find(x => /(đại học|trường|học viện|cao đẳng|university|college|institute|academy|school|大学|学院)/i.test(x)) || school; P.school = hit.replace(/\s*\(?\s*(19|20)\d{2}.*$/, '').trim().slice(0, 140); }
+  // languages
+  const langScope = [secs.languages, secs.certs, secs.skills].filter(Boolean).map(a => a.join('\n')).join('\n');
+  LANG_DEFS.forEach(def => {
+    const certs = []; def[2].forEach(c => { const cm = all.match(c[0]); if (cm) certs.push(c[1] + cm[1].toUpperCase().replace(',', '.')); });
+    const mentioned = def[1].test(langScope) || (/^tiếng /i.test(def[0]) && new RegExp(def[0], 'i').test(all));
+    if (!certs.length && !mentioned) return;
+    let level = '';
+    const ln = (langScope || all).split('\n').find(l => def[1].test(l));
+    if (ln) { const lw = ln.match(LEVEL_WORDS); if (lw) level = lw[1]; }
+    P.languages.push(def[0] + (certs.length || level ? ': ' + certs.concat(level ? [level] : []).join(', ') : ''));
+  });
+  if (!P.languages.length && secs.languages) P.languages = secs.languages.slice(0, 4).map(s => s.replace(/^[•\-\s]+/, '').slice(0, 60));
+  // skills
+  if (secs.skills) {
+    const seen = {};
+    secs.skills.join('\n').split(/[,;•·|\n]|\s-\s/).forEach(x => {
+      x = x.replace(/^[\s\-•*]+|[\s.]+$/g, '').replace(/^(kỹ năng (mềm|cứng|chuyên môn)|soft skills|hard skills|technical|tools?|công cụ)\s*[:：]\s*/i, '').trim();
+      const k = x.toLowerCase();
+      if (x.length >= 2 && x.length <= 40 && !seen[k]) { seen[k] = 1; P.skills.push(x); }
+    });
+    P.skills = P.skills.slice(0, 20);
+  }
+  const sec = k => (secs[k] || []).join('\n').slice(0, 3000);
+  P.certs = sec('certs'); P.experience = sec('experience'); P.education = sec('education'); P.objective = sec('objective'); P.projects = sec('projects');
+  P.lang = detectLang(all);
+  P.parsedAt = Date.now();
+  return P;
+}
+function profOf(c){
+  if (c.profile) return c.profile;
+  if (!c.cvText) return null;
+  S.profCache = S.profCache || {};
+  const k = c.id + ':' + c.cvText.length;
+  if (!S.profCache[k]) S.profCache[k] = parseCV(c.cvText);
+  return S.profCache[k];
+}
+const PROF_ROWS = [['name', 'Họ và tên'], ['dob', 'Ngày sinh'], ['gender', 'Giới tính'], ['phone', 'Số điện thoại'], ['email', 'Email'], ['address', 'Địa chỉ'], ['position', 'Vị trí mong muốn'], ['years', 'Số năm kinh nghiệm'], ['eduLevel', 'Trình độ'], ['major', 'Chuyên ngành'], ['school', 'Trường'], ['languages', 'Ngoại ngữ'], ['skills', 'Kỹ năng'], ['marital', 'Hôn nhân']];
+function profileCard(c){
+  if (S.editProf === c.id && S.profDraft) return profileForm(c);
+  const p = profOf(c);
+  if (!p) return '<div class="card pad stack"><h2>Thông tin ứng viên</h2><p class="sub" style="font-size:13px">Chưa đọc được chữ trong CV này (CV dạng ảnh). Bạn có thể nhập tay, hoặc dùng AI phân tích để đọc ảnh.</p><div><button type="button" class="btn" data-act="edit-prof" data-id="' + esc(c.id) + '">Nhập thông tin</button></div></div>';
+  const val = k => { const v = p[k]; if (k === 'dob' && v) return v + (p.age ? ' (' + p.age + ' tuổi)' : ''); if (k === 'years') return v == null || v === '' ? '' : v + ' năm'; return Array.isArray(v) ? v.join(', ') : v; };
+  const found = PROF_ROWS.filter(r => val(r[0])).length;
+  const block = (k, label) => p[k] ? '<details><summary>' + label + '</summary><div class="paper" style="padding:12px 14px;margin-top:8px;max-height:260px;font-size:13px">' + esc(p[k]) + '</div></details>' : '';
+  return '<div class="card pad stack"><div class="row"><div class="stack" style="gap:0"><h2>Thông tin ứng viên</h2><span class="sub">' + (c.profile ? (c.profile.edited ? 'Đã kiểm tra và chỉnh sửa' : 'Tự động đọc từ CV, hãy kiểm tra lại') : 'Tự động đọc từ CV, chưa lưu') + ' · tìm thấy ' + found + '/' + PROF_ROWS.length + ' mục</span></div><span class="spacer"></span>' +
+      (c.cvText ? '<button type="button" class="btn sm ghost" data-act="reparse" data-id="' + esc(c.id) + '">Đọc lại từ CV</button>' : '') +
+      '<button type="button" class="btn sm" data-act="edit-prof" data-id="' + esc(c.id) + '">Sửa thông tin</button></div>' +
+    '<div class="pgrid">' + PROF_ROWS.map(r => { const v = val(r[0]); return '<div class="kv"><span>' + r[1] + '</span><b' + (v ? '' : ' class="c-muted" style="font-weight:400"') + '>' + esc(v || 'Không tìm thấy') + '</b></div>'; }).join('') + '</div>' +
+    (p.certs ? '<div class="kv" style="border:0"><span>Chứng chỉ</span><b style="white-space:pre-line">' + esc(p.certs.slice(0, 400)) + '</b></div>' : '') +
+    '<div class="stack" style="gap:6px">' + block('experience', 'Kinh nghiệm làm việc') + block('education', 'Quá trình học tập') + block('projects', 'Dự án') + block('objective', 'Mục tiêu / giới thiệu') + '</div>' +
+    (!c.profile ? '<div><button type="button" class="btn primary sm" data-act="save-prof-auto" data-id="' + esc(c.id) + '">Lưu thông tin này</button></div>' : '') +
+  '</div>';
+}
+function profileForm(c){
+  const d = S.profDraft;
+  const f = (k, label, type) => '<label class="field"><span>' + label + '</span><input class="input" id="p-' + k + '" data-p="' + k + '" type="' + (type || 'text') + '" value="' + esc(d[k] == null ? '' : d[k]) + '"></label>';
+  return '<div class="card pad stack" aria-label="Sửa thông tin ứng viên"><h2>Sửa thông tin ứng viên</h2><div class="grid2">' +
+    f('name', 'Họ và tên') + f('dob', 'Ngày sinh') +
+    '<label class="field"><span>Giới tính</span><select class="input" id="p-gender" data-p="gender">' + ['', 'Nam', 'Nữ', 'Khác'].map(g => '<option value="' + g + '"' + (d.gender === g ? ' selected' : '') + '>' + (g || 'Chưa rõ') + '</option>').join('') + '</select></label>' +
+    f('phone', 'Số điện thoại') + f('email', 'Email', 'email') + f('address', 'Địa chỉ') + f('position', 'Vị trí mong muốn') + f('years', 'Số năm kinh nghiệm', 'number') +
+    '<label class="field"><span>Trình độ</span><select class="input" id="p-eduLevel" data-p="eduLevel">' + [''].concat(EDU_LEVELS.map(l => l[0])).map(g => '<option value="' + g + '"' + (d.eduLevel === g ? ' selected' : '') + '>' + (g || 'Chưa rõ') + '</option>').join('') + '</select></label>' +
+    f('major', 'Chuyên ngành') + f('school', 'Trường') + f('marital', 'Tình trạng hôn nhân') + '</div>' +
+    f('languages', 'Ngoại ngữ (cách nhau bằng dấu phẩy)') + f('skills', 'Kỹ năng (cách nhau bằng dấu phẩy)') +
+    '<label class="field"><span>Chứng chỉ</span><textarea class="input" rows="2" id="p-certs" data-p="certs">' + esc(d.certs || '') + '</textarea></label>' +
+    '<div class="row"><button type="button" class="btn primary" data-act="save-prof" data-id="' + esc(c.id) + '">Lưu thông tin</button><button type="button" class="btn" data-act="cancel-prof">Hủy</button></div></div>';
+}
+function openProf(c){
+  const p = clone(profOf(c) || {languages: [], skills: []});
+  S.editProf = c.id;
+  S.profDraft = Object.assign({}, p, {languages: (p.languages || []).join(', '), skills: (p.skills || []).join(', '), years: p.years == null ? '' : String(p.years), name: p.name || c.name || '', email: p.email || c.email || '', phone: p.phone || c.phone || ''});
+}
+async function saveProf(c, p){
+  const patch = {profile: p};
+  if (p.name) { patch.name = p.name; patch.autoName = false; }
+  if (p.email) patch.email = p.email;
+  if (p.phone) patch.phone = p.phone;
+  if (!c.lang && p.lang) patch.lang = p.lang;
+  await saveCand(c.id, patch);
+}
+
+// ---------- views ----------
+function scoreCell(s){
+  if (s == null) return '<span class="sub">Chưa chấm</span>';
+  const t = tone(s);
+  return '<div class="score"><b class="c-' + t + '">' + s + '</b><div class="bar"><i class="bg-' + t + '" style="width:' + s + '%"></i></div></div>';
+}
+function langCell(l, withNote){
+  if (!l) return '<span class="sub">Chưa rõ</span>';
+  const L = LANGS[l] || LANGS.other;
+  return '<div><span class="lang l-' + l + '"><code>' + L.code + '</code>' + L.name + '</span>' + (withNote ? '<div class="sub">' + (l === 'vi' ? 'Đọc trực tiếp' : 'Đã dịch sang tiếng Việt') + '</div>' : '') + '</div>';
+}
+const stagePill = s => { const st = STAGE[s] || STAGE.new; return '<span class="pill t-' + st.tone + '">' + st.label + '</span>'; };
+const sampleBadge = c => c.sample ? '<span class="sample-badge">MẪU</span>' : '';
+
+function viewCandidates(){
+  const f = S.f;
+  const q = f.q.trim().toLowerCase();
+  const base = S.cands.filter(c => (f.lang === 'all' || c.lang === f.lang) && (f.job === 'all' || c.jobId === f.job) &&
+    (!q || [c.name, c.email, c.phone, jobTitle(c.jobId), (c.analysis && c.analysis.skills || []).join(' '), ((profOf(c) || {}).skills || []).join(' ')].join(' ').toLowerCase().includes(q)));
+  let rows = base.filter(c => f.stage === 'all' || c.stage === f.stage);
+  rows.sort((a, b) => f.sort === 'score' ? (b.score == null ? -1 : b.score) - (a.score == null ? -1 : a.score) : f.sort === 'name' ? String(a.name).localeCompare(String(b.name), 'vi') : (b.createdAt || 0) - (a.createdAt || 0));
+  const pendingAi = S.cands.filter(c => !c.analysis).length;
+  const high = S.cands.filter(c => c.score != null && c.score >= 85 && c.stage !== 'rejected').length;
+  const t0 = todayIso(), t7 = new Date(Date.now() + 7 * 864e5).toISOString().slice(0, 10);
+  let ivWeek = 0; Object.keys(S.ivs).forEach(id => { const d = S.ivs[id]; if (!cand(id)) return; (d.r || []).slice(0, d.rounds || 2).forEach(r => { if (r.date && r.date >= t0 && r.date <= t7) ivWeek++; }); });
+  const chip = (k, label, n) => '<button type="button" class="chip" data-act="f-stage" data-v="' + k + '" aria-pressed="' + (f.stage === k) + '">' + label + ' (' + n + ')</button>';
+  const langN = k => S.cands.filter(c => c.lang === k).length;
+  return '<header class="top"><div><h1>CV &amp; ứng viên</h1><p>Lưu CV tiếng Việt, tiếng Anh, tiếng Trung và đánh giá theo tiêu chí từng vị trí: bạn tự chấm, hoặc bật AI để đọc, dịch và chấm giúp.</p></div>' +
+    '<div class="row">' + (S.cands.some(c => c.sample) ? '<button type="button" class="btn sm" data-act="clear-sample">Xóa dữ liệu mẫu</button>' : '') + '<button type="button" class="btn" data-act="export-csv">Xuất danh sách (CSV)</button></div></header>' +
+    uploadPanel() +
+    '<div class="kpis">' +
+      '<div class="card kpi"><span>Tổng số CV</span><b>' + S.cands.length + '</b><span>' + S.jobs.filter(j => j.status === 'Đang tuyển').length + ' vị trí đang tuyển</span></div>' +
+      '<div class="card kpi"><span>Chờ đánh giá</span><b>' + pendingAi + '</b><span>' + (Object.keys(S.running).length ? Object.keys(S.running).length + ' CV AI đang xử lý' : 'Mở CV để đánh giá') + '</span></div>' +
+      '<div class="card kpi"><span>Phù hợp cao (≥ 85 điểm)</span><b class="c-accent">' + high + '</b><span>Đề xuất ưu tiên liên hệ</span></div>' +
+      '<div class="card kpi"><span>Phỏng vấn 7 ngày tới</span><b>' + ivWeek + '</b><span>Buổi đã lên lịch</span></div>' +
+    '</div>' +
+    '<section class="card" aria-label="Danh sách ứng viên"><div class="toolbar"><div class="chips">' +
+      chip('all', 'Tất cả', base.length) + STAGES.map(s => chip(s[0], s[1], base.filter(c => c.stage === s[0]).length)).join('') +
+    '</div><div class="filters">' +
+      '<label class="sr" for="f-q">Tìm ứng viên</label><input id="f-q" class="input search" type="search" placeholder="Tìm tên, email, kỹ năng…" value="' + esc(f.q) + '">' +
+      '<label class="sr" for="f-job">Vị trí</label><select id="f-job" class="input"><option value="all">Mọi vị trí</option>' + S.jobs.map(j => '<option value="' + esc(j.id) + '"' + (f.job === j.id ? ' selected' : '') + '>' + esc(j.title) + '</option>').join('') + '</select>' +
+      '<label class="sr" for="f-lang">Ngôn ngữ CV</label><select id="f-lang" class="input">' +
+        [['all','Mọi ngôn ngữ (' + S.cands.length + ')'],['vi','Tiếng Việt (' + langN('vi') + ')'],['en','Tiếng Anh (' + langN('en') + ')'],['zh','Tiếng Trung (' + langN('zh') + ')']].map(o => '<option value="' + o[0] + '"' + (f.lang === o[0] ? ' selected' : '') + '>' + o[1] + '</option>').join('') + '</select>' +
+      '<label class="sr" for="f-sort">Sắp xếp</label><select id="f-sort" class="input">' + [['score','Điểm cao nhất'],['new','Mới nộp gần đây'],['name','Tên A–Z']].map(o => '<option value="' + o[0] + '"' + (f.sort === o[0] ? ' selected' : '') + '>' + o[1] + '</option>').join('') + '</select>' +
+    '</div></div>' +
+    (rows.length ? '<div class="table-wrap"><table><thead><tr><th>Ứng viên</th><th>Vị trí ứng tuyển</th><th>Điểm</th><th>Kinh nghiệm · Trình độ</th><th>Ngôn ngữ CV</th><th>Trạng thái</th><th>Ngày nộp</th><th><span class="sr">Mở</span></th></tr></thead><tbody>' +
+      rows.map(c => '<tr data-act="open-cv" data-id="' + esc(c.id) + '"><td><div class="who"><div class="avatar">' + esc(initials(c.name)) + '</div><div><b>' + esc(c.name) + sampleBadge(c) + '</b><small>' + esc(c.phone || c.email || (c.file ? c.file.name : 'Nội dung dán')) + '</small></div></div></td>' +
+        '<td>' + esc(jobTitle(c.jobId)) + '</td><td>' + (S.running[c.id] ? '<span class="pill t-warn"><span class="spin" style="width:12px;height:12px"></span>Đang chấm</span>' : scoreCell(c.score)) + '</td>' +
+        '<td class="sub" style="color:var(--ink-2)">' + (function(){ const pf = profOf(c) || {}; return esc([pf.years != null && pf.years !== '' ? pf.years + ' năm KN' : '', pf.eduLevel || ''].filter(Boolean).join(' · ') || '—') + (pf.languages && pf.languages.length ? '<div class="sub">' + esc(pf.languages.map(x => x.split(':')[0]).join(', ')) + '</div>' : ''); })() + '</td>' +
+        '<td>' + langCell(c.lang, true) + '</td><td>' + stagePill(c.stage) + '</td><td class="sub">' + fmtDate(c.createdAt) + '</td>' +
+        '<td><button type="button" class="btn sm" data-act="open-cv" data-id="' + esc(c.id) + '">Xem CV</button></td></tr>').join('') +
+      '</tbody></table></div>' : '<div class="empty">' + (S.cands.length ? 'Không có ứng viên nào khớp bộ lọc hiện tại.' : 'Chưa có CV nào. Tải CV đầu tiên lên ở khung phía trên.') + '</div>') +
+    '</section>';
+}
+function uploadPanel(){
+  return '<section class="card pad stack" aria-label="Thêm CV">' +
+    '<div class="row"><h2>Thêm CV mới</h2><span class="spacer"></span><span style="font-size:13px;font-weight:600">Cách đánh giá CV:</span>' +
+      '<div class="seg" role="group" aria-label="Cách đánh giá CV"><button type="button" data-act="ai-mode" data-v="manual" aria-pressed="' + (S.aiMode === 'manual') + '">Tôi tự đánh giá</button><button type="button" data-act="ai-mode" data-v="auto" aria-pressed="' + (S.aiMode === 'auto') + '">' + ICON.spark + ' Dùng AI phân tích</button></div></div>' +
+    '<p class="sub" style="font-size:13px">' + (S.aiMode === 'manual' ? 'CV chỉ được lưu lại, AI không đọc. Mở từng CV và bấm <b>Tôi tự đánh giá</b> để nhập điểm và nhận xét.' + (S.sample ? ' Bạn vẫn có thể cho AI phân tích riêng CV nào cần.' : ' Muốn dùng AI: nhập API key ở mục Cài đặt rồi chọn Dùng AI phân tích.') : S.sample ? 'AI sẽ tự đọc, dịch sang tiếng Việt và chấm điểm ngay sau khi tải lên. Chi phí tính vào tài khoản API Anthropic của bạn.' : 'Chưa kết nối AI (vào Cài đặt để nhập API key): CV vẫn được lưu và bạn có thể tự đánh giá.') + '</p>' +
+    '<div class="upload"><label class="field"><span>Vị trí ứng tuyển</span><select id="up-job" class="input"><option value="">Chưa chọn vị trí</option>' +
+      S.jobs.filter(j => j.status !== 'Đã đóng').map(j => '<option value="' + esc(j.id) + '"' + ((S.upJob || (S.f.job !== 'all' ? S.f.job : '')) === j.id ? ' selected' : '') + '>' + esc(j.title) + '</option>').join('') + '</select></label>' +
+    '<label class="drop" id="drop">' + ICON.up + '<div><strong>Chọn file CV hoặc kéo thả vào đây</strong><span>PDF, DOCX, TXT hoặc ảnh chụp CV (JPG, PNG) · Tiếng Việt, tiếng Anh, tiếng Trung · chọn được nhiều file</span></div>' +
+      '<input id="up-file" type="file" multiple accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" aria-label="Chọn file CV"></label></div>' +
+    '<details><summary>Hoặc dán nội dung CV</summary><div class="stack" style="margin-top:10px"><label class="sr" for="up-text">Nội dung CV</label><textarea id="up-text" class="input" rows="5" placeholder="Dán toàn bộ nội dung CV vào đây…"></textarea><div><button type="button" class="btn primary" data-act="paste-cv">Thêm và phân tích</button></div></div></details>' +
+    (S.upLog.length ? '<div class="uplog" aria-live="polite">' + S.upLog.map(l => '<div><i class="dot ' + l.state + '"></i><b>' + esc(l.name) + '</b><span class="sub">' + esc(l.msg) + '</span></div>').join('') + '</div>' : '') +
+  '</section>';
+}
+
+function viewCV(){
+  if (!S.cands.length) return '<header class="top"><div><h1>Đọc &amp; đánh giá CV</h1></div></header><div class="card empty">Chưa có CV nào. <a href="#ung-vien">Tải CV lên</a> để AI bắt đầu đọc.</div>';
+  let c = cand(S.selCand); if (!c) { c = S.cands.slice().sort((a,b) => (b.createdAt||0) - (a.createdAt||0))[0]; S.selCand = c.id; }
+  const a = c.analysis; const run = S.running[c.id];
+  const L = LANGS[c.lang] || null;
+  const hasTr = c.lang && c.lang !== 'vi' && c.translationVi;
+  const mode = hasTr ? S.cvMode : 'orig';
+  const body = mode === 'vi' ? c.translationVi : (c.cvText || '');
+  let banner;
+  if (!c.lang) banner = ['t-muted', 'Chưa xác định ngôn ngữ CV. Chọn ngôn ngữ khi đánh giá, hoặc để AI nhận diện.'];
+  else if (c.lang === 'vi') banner = ['t-muted', 'CV viết bằng tiếng Việt, không cần dịch.'];
+  else if (mode === 'vi') banner = ['t-accent', 'Bản dịch tiếng Việt do AI quy đổi từ ' + L.name.toLowerCase() + '. Bấm Bản gốc để đối chiếu.'];
+  else banner = ['t-info', 'Đang xem bản gốc (' + L.name + '). Kết quả phân tích bên phải hiển thị bằng tiếng Việt.'];
+  const ringCol = a ? 'var(--' + (tone(a.score) === 'accent' ? 'accent' : tone(a.score)) + ')' : 'var(--line-2)';
+  const iv = S.ivs[c.id];
+  return '<header class="top"><div><h1>Đọc &amp; đánh giá CV</h1><p>Đọc CV, xem bản dịch tiếng Việt (nếu dùng AI) và đánh giá mức độ phù hợp.</p></div>' +
+    '<div class="row"><label class="sr" for="cv-pick">Chọn ứng viên</label><select id="cv-pick" class="input" style="min-width:260px">' +
+    S.cands.map(x => '<option value="' + esc(x.id) + '"' + (x.id === c.id ? ' selected' : '') + '>' + esc(x.name) + ' · ' + esc(jobTitle(x.jobId)) + '</option>').join('') + '</select></div></header>' +
+    '<div class="cv-grid">' +
+    '<section class="stack" aria-label="CV">' +
+      '<div class="row"><div class="who"><div class="avatar">' + esc(initials(c.name)) + '</div><div><b>' + esc(c.name) + sampleBadge(c) + '</b><small>' + esc(c.file ? c.file.name : 'Nội dung dán') + ' · nộp ngày ' + fmtDate(c.createdAt) + '</small></div></div><span class="spacer"></span>' +
+        (c.file && c.file.assetId ? '<button type="button" class="btn sm" data-act="open-file" data-id="' + esc(c.file.assetId) + '">Mở file gốc</button>' : '') +
+        (hasTr ? '<div class="seg" role="group" aria-label="Chế độ xem"><button type="button" data-act="cv-mode" data-v="orig" aria-pressed="' + (mode === 'orig') + '">Bản gốc</button><button type="button" data-act="cv-mode" data-v="vi" aria-pressed="' + (mode === 'vi') + '">Bản dịch tiếng Việt</button></div>' : '') + '</div>' +
+      '<div class="banner ' + banner[0] + '">' + ICON.tr + '<span>' + esc(banner[1]) + '</span></div>' +
+      '<div class="paper" lang="' + (mode === 'vi' ? 'vi' : (c.lang === 'zh' ? 'zh' : c.lang === 'en' ? 'en' : 'vi')) + '">' + (body ? esc(body) : '<span class="sub">' + (c.file && /^image\//.test(c.file.type) ? 'CV là file ảnh hoặc PDF dạng ảnh. Bấm Mở file gốc để xem; nếu dùng AI phân tích, nội dung chữ sẽ hiện ở đây.' : 'Chưa có nội dung chữ của CV.') + '</span>') + '</div>' +
+    '</section>' +
+    '<section class="stack" aria-label="Đánh giá CV">' + profileCard(c) +
+      (run ? '<div class="thinking" role="status"><span class="spin"></span><div><b>AI đang đọc, dịch và chấm điểm CV…</b><div class="sub" style="color:inherit">Thường mất 30–90 giây.</div></div><span class="spacer"></span><button type="button" class="btn sm" data-act="stop-ai" data-id="' + esc(c.id) + '">Dừng</button></div>' : '') +
+      (S.editEval === c.id && S.evalDraft ? evalForm(c) : a ? (
+        '<div class="card pad row" style="gap:18px;align-items:center"><div class="ring" style="background:conic-gradient(' + ringCol + ' ' + a.score * 3.6 + 'deg, var(--line) 0)"><div><b class="c-' + tone(a.score) + '">' + a.score + '</b><small>/ 100</small></div></div>' +
+          '<div class="stack" style="gap:4px;flex:1;min-width:0"><div class="row" style="gap:8px"><span class="label" style="color:var(--accent)">Điểm phù hợp · ' + esc(a.jobTitle || jobTitle(c.jobId)) + '</span>' + srcPill(a) + '</div><b style="font-size:18px">' + esc(a.verdict || '') + '</b><span class="sub" style="font-size:13px">' + esc(a.summary) + '</span></div>' +
+          '<button type="button" class="btn sm" data-act="edit-eval" data-id="' + esc(c.id) + '">Chỉnh sửa đánh giá</button></div>' +
+        '<div class="card pad stack"><div class="row"><h2>Ngôn ngữ &amp; quy đổi</h2><span class="spacer"></span><span class="pill ' + (c.translationVi ? 't-accent' : 't-muted') + '">' + (c.translationVi ? 'Đã quy đổi sang tiếng Việt' : c.lang === 'vi' ? 'Không cần dịch' : 'Chưa có bản dịch') + '</span></div>' +
+          '<div class="mini-grid"><div class="mini"><span>Ngôn ngữ gốc</span><b>' + esc((LANGS[c.lang] || LANGS.other).name) + '</b></div><div class="mini"><span>Ngôn ngữ kết quả</span><b>Tiếng Việt</b></div><div class="mini"><span>Độ tin cậy nhận diện</span><b>' + (a.languageConfidence == null ? '—' : a.languageConfidence + '%') + '</b></div></div></div>' +
+        '<div class="card pad stack"><h2>Điểm theo tiêu chí</h2>' + WKEYS.map(k => { const v = a.breakdown[k[0]]; return '<div class="brk"><span>' + k[1] + ' <span class="sub">(' + (a.weights[k[0]] || 0) + '%)</span></span><div class="bar"><i class="bg-' + tone(v) + '" style="width:' + v + '%"></i></div><b style="text-align:right;font-variant-numeric:tabular-nums">' + v + '</b></div>'; }).join('') + '</div>' +
+        '<div class="stack">' +
+        '<div class="card pad stack"><h2>So khớp kỹ năng với JD</h2><div class="chips">' +
+          (a.matched.length ? a.matched.map(s => '<span class="tag t-accent">' + ICON.check + esc(s) + '</span>').join('') : '<span class="sub">Không có kỹ năng bắt buộc nào khớp.</span>') +
+          a.missing.map(s => '<span class="tag t-bad">' + ICON.x + esc(s) + '</span>').join('') + '</div>' +
+          (a.skills.length ? '<div class="sub">Kỹ năng trong CV: ' + esc(a.skills.join(', ')) + '</div>' : '') + '</div></div>' +
+        '<div class="grid2"><div class="card pad stack"><h2>Điểm mạnh</h2><ul class="list">' + (a.strengths.map(s => '<li>' + esc(s) + '</li>').join('') || '<li>—</li>') + '</ul></div>' +
+          '<div class="card pad stack"><h2>Cần lưu ý</h2><ul class="list">' + (a.concerns.map(s => '<li>' + esc(s) + '</li>').join('') || '<li>—</li>') + '</ul></div></div>'
+      ) : (!run ? '<div class="card pad stack"><h2>CV này chưa được đánh giá</h2><p class="sub" style="font-size:13px">Chọn một cách: cho phép AI đọc CV, dịch sang tiếng Việt và chấm điểm theo vị trí; hoặc bạn tự đọc CV và nhập điểm, nhận xét.' + (S.sample ? '' : ' Chưa kết nối AI: vào Cài đặt để nhập API key.') + '</p><div class="row"><button type="button" class="btn primary" data-act="analyze" data-id="' + esc(c.id) + '"' + (S.sample ? '' : ' disabled') + '>' + ICON.spark + 'Cho phép AI phân tích</button><button type="button" class="btn" data-act="edit-eval" data-id="' + esc(c.id) + '">Tôi tự đánh giá</button></div></div>' : '')) +
+      '<div class="card pad stack"><div class="grid2"><label class="field"><span>Vị trí ứng tuyển</span><select id="cv-job" class="input"><option value="">Chưa chọn vị trí</option>' + S.jobs.map(j => '<option value="' + esc(j.id) + '"' + (c.jobId === j.id ? ' selected' : '') + '>' + esc(j.title) + '</option>').join('') + '</select></label>' +
+        '<label class="field"><span>Trạng thái</span><select id="cv-stage" class="input">' + STAGES.map(s => '<option value="' + s[0] + '"' + (c.stage === s[0] ? ' selected' : '') + '>' + s[1] + '</option>').join('') + '</select></label></div>' +
+        '<label class="field"><span>Ghi chú của nhà tuyển dụng</span><textarea id="cv-note" class="input" rows="2" placeholder="Thêm nhận xét về ứng viên…">' + esc(c.note || '') + '</textarea></label>' +
+        '<div class="row"><button type="button" class="btn primary" data-act="invite" data-id="' + esc(c.id) + '">' + (iv ? 'Mở lịch phỏng vấn' : 'Mời phỏng vấn') + '</button>' +
+          (a && !run ? '<button type="button" class="btn" data-act="analyze" data-id="' + esc(c.id) + '"' + (S.sample ? '' : ' disabled') + '>' + ICON.spark + 'Phân tích lại</button>' : '') +
+          (c.translationVi && S.downloads ? '<button type="button" class="btn" data-act="dl-tr" data-id="' + esc(c.id) + '">Tải bản dịch tiếng Việt</button>' : '') +
+          '<span class="spacer"></span>' + (S.confirm === 'del-' + c.id ? '' : '<button type="button" class="btn danger" data-act="ask-del" data-id="' + esc(c.id) + '">Xóa hồ sơ</button>') + '</div>' +
+        (S.confirm === 'del-' + c.id ? '<div class="confirm" role="alert">Xóa vĩnh viễn hồ sơ ' + esc(c.name) + ' cùng file CV và lịch phỏng vấn?<span class="spacer"></span><button type="button" class="btn sm" data-act="cancel-confirm">Giữ lại</button><button type="button" class="btn sm danger" data-act="del-cand" data-id="' + esc(c.id) + '">Xóa hồ sơ</button></div>' : '') +
+      '</div>' +
+    '</section></div>';
+}
+
+function srcPill(a){
+  if (a.source === 'manual') return '<span class="pill t-info">Tự đánh giá</span>';
+  if (a.source === 'ai-edited') return '<span class="pill t-purple">AI + chỉnh tay</span>';
+  return '<span class="pill t-accent">' + ICON.spark + 'AI đánh giá</span>';
+}
+function evalForm(c){
+  const d = S.evalDraft; const j = job(c.jobId); const w = (j && j.weights) || DEFAULT_W;
+  const sc = evalScore(d, w);
+  const f = (key, label, ph, type, extra) => '<label class="field"><span>' + label + '</span><input class="input" id="m-' + key + '" data-m="' + key + '" type="' + (type || 'text') + '" value="' + esc(d[key]) + '" placeholder="' + esc(ph || '') + '"' + (extra || '') + '></label>';
+  const ta = (key, label, ph) => '<label class="field"><span>' + label + '</span><textarea class="input" rows="3" id="m-' + key + '" data-m="' + key + '" placeholder="' + esc(ph) + '">' + esc(d[key]) + '</textarea></label>';
+  return '<div class="card pad stack" aria-label="Tự đánh giá CV"><div class="row"><div class="stack" style="gap:2px"><h2>Tự đánh giá CV</h2><span class="sub">Đọc CV bên trái rồi nhập điểm và nhận xét. Điểm tổng tự tính theo trọng số của vị trí' + (j ? ' ' + esc(j.title) : '') + '.</span></div><span class="spacer"></span>' +
+      '<div class="mini" style="flex-direction:row;align-items:baseline;gap:6px"><span>Điểm tổng</span><b id="m-total" style="font-size:22px;color:var(--accent)">' + (sc == null ? '—' : sc) + '</b><span>/ 100</span></div></div>' +
+    '<div class="stack" style="gap:8px"><span class="label">Điểm theo tiêu chí (0–100)</span><div class="grid2">' +
+      f('skill', 'Kỹ năng chuyên môn (' + w.skill + '%)', '0–100', 'number', ' min="0" max="100"') + f('exp', 'Kinh nghiệm (' + w.exp + '%)', '0–100', 'number', ' min="0" max="100"') +
+      f('edu', 'Học vấn (' + w.edu + '%)', '0–100', 'number', ' min="0" max="100"') + f('langs', 'Ngoại ngữ (' + w.lang + '%)', '0–100', 'number', ' min="0" max="100"') + '</div></div>' +
+    '<div class="grid2"><label class="field"><span>Kết luận</span><select class="input" id="m-verdict" data-m="verdict"><option value="">Chọn kết luận</option>' + VERDICTS.map(v => '<option' + (d.verdict === v ? ' selected' : '') + '>' + v + '</option>').join('') + '</select></label>' +
+      '<label class="field"><span>Ngôn ngữ CV</span><select class="input" id="m-lang" data-m="lang">' + ['vi','en','zh','other'].map(k => '<option value="' + k + '"' + (d.lang === k ? ' selected' : '') + '>' + LANGS[k].name + '</option>').join('') + '</select></label></div>' +
+    ta('summary', 'Nhận định chung', 'VD: Đáp ứng tốt yêu cầu, nên mời phỏng vấn') +
+    (d.must.length ? '<fieldset class="stack" style="gap:6px;border:0;padding:0;margin:0"><legend class="label" style="margin-bottom:6px">Kỹ năng bắt buộc của vị trí: đánh dấu kỹ năng ứng viên đáp ứng</legend><div class="chips">' +
+      d.must.map((m, i) => '<label class="tag ' + (m.ok ? 't-accent' : 't-muted') + '" style="cursor:pointer"><input type="checkbox" data-m-must="' + i + '"' + (m.ok ? ' checked' : '') + '> ' + esc(m.name) + '</label>').join('') + '</div></fieldset>' : '<span class="sub">Vị trí chưa có danh sách kỹ năng bắt buộc.</span>') +
+    '<div class="grid2">' + f('name', 'Họ tên *', '') + f('title', 'Chức danh hiện tại', '') + f('email', 'Email', '') + f('phone', 'Điện thoại', '') + f('years', 'Số năm kinh nghiệm', 'VD: 3', 'number', ' min="0" step="0.5"') + f('location', 'Khu vực', '') + '</div>' +
+    f('education', 'Học vấn', 'VD: Cử nhân CNTT, Đại học…') + f('skills', 'Kỹ năng trong CV (cách nhau bằng dấu phẩy)', 'React, SQL, Excel…') +
+    '<div class="grid2">' + ta('strengths', 'Điểm mạnh (mỗi ý một dòng)', 'Mỗi dòng một ý') + ta('concerns', 'Cần lưu ý (mỗi ý một dòng)', 'Mỗi dòng một ý') + '</div>' +
+    '<div class="row"><button type="button" class="btn primary" data-act="save-eval">Lưu đánh giá</button><button type="button" class="btn" data-act="cancel-eval">Hủy</button></div></div>';
+}
+
+function viewPipeline(){
+  const list = S.cands.filter(c => S.pipeJob === 'all' || c.jobId === S.pipeJob);
+  const rej = list.filter(c => c.stage === 'rejected').length;
+  return '<header class="top"><div><h1>Quy trình tuyển dụng</h1><p>Theo dõi ứng viên qua từng vòng. Dùng nút mũi tên để chuyển ứng viên sang bước kế tiếp; điểm CV giúp ưu tiên trong mỗi cột.</p></div>' +
+    '<div class="row"><label class="sr" for="pipe-job">Vị trí</label><select id="pipe-job" class="input"><option value="all">Mọi vị trí</option>' + S.jobs.map(j => '<option value="' + esc(j.id) + '"' + (S.pipeJob === j.id ? ' selected' : '') + '>' + esc(j.title) + '</option>').join('') + '</select></div></header>' +
+    '<div class="board">' + FLOW.map((st, i) => {
+      const cs = list.filter(c => c.stage === st).sort((a, b) => (b.score || 0) - (a.score || 0));
+      return '<section class="col" aria-label="' + STAGE[st].label + '"><div class="col-head"><span><i style="background:' + STAGE[st].dot + '"></i>' + STAGE[st].label + '</span><span class="pill t-muted">' + cs.length + '</span></div>' +
+        (cs.map(c => { const iv = S.ivs[c.id]; let meta = c.lang ? (LANGS[c.lang] || LANGS.other).code + ' · ' : '';
+          if ((st === 'interview') && iv) { const r = (iv.r || []).slice(0, iv.rounds || 2).find(r => !r.verdict) || (iv.r || [])[0]; if (r && r.date) meta += 'Lịch ' + fmtDay(r.date) + (r.start ? ', ' + r.start : ''); else meta += 'Chưa đặt lịch'; }
+          else meta += jobTitle(c.jobId);
+          return '<article class="kcard"><div class="who"><div class="avatar" style="width:30px;height:30px">' + esc(initials(c.name)) + '</div><div style="min-width:0"><button type="button" class="nm" data-act="open-cv" data-id="' + esc(c.id) + '">' + esc(c.name) + '</button>' + sampleBadge(c) + '<small>' + esc(meta) + '</small></div></div>' +
+            '<div class="row" style="gap:6px"><span class="pill t-' + tone(c.score) + '">Điểm ' + (c.score == null ? '—' : c.score) + '</span><span class="spacer"></span>' +
+            (i > 0 ? '<button type="button" class="icon-btn" data-act="move" data-id="' + esc(c.id) + '" data-v="' + FLOW[i - 1] + '" aria-label="Chuyển về ' + STAGE[FLOW[i - 1]].label + '">' + ICON.left + '</button>' : '') +
+            (i < FLOW.length - 1 ? '<button type="button" class="icon-btn" data-act="move" data-id="' + esc(c.id) + '" data-v="' + FLOW[i + 1] + '" aria-label="Chuyển sang ' + STAGE[FLOW[i + 1]].label + '">' + ICON.right + '</button>' : '') +
+            '<button type="button" class="icon-btn" data-act="move" data-id="' + esc(c.id) + '" data-v="rejected" aria-label="Từ chối ' + esc(c.name) + '">' + ICON.x + '</button></div></article>'; }).join('') || '<div class="sub" style="padding:8px 4px">Chưa có ứng viên.</div>') + '</section>';
+    }).join('') + '</div>' +
+    (rej ? '<p class="sub">' + rej + ' ứng viên đã bị từ chối. <a href="#ung-vien" data-act="show-rejected">Xem danh sách</a></p>' : '');
+}
+
+function viewInterview(){
+  const pool = S.cands.filter(c => ['interview','offer','hired'].includes(c.stage) || S.ivs[c.id]);
+  const t0 = todayIso();
+  const upcoming = [];
+  pool.forEach(c => { const d = S.ivs[c.id]; if (!d) return; (d.r || []).slice(0, d.rounds || 2).forEach((r, i) => { if (r.date && r.date >= t0 && !r.verdict) upcoming.push({c, r, i}); }); });
+  upcoming.sort((a, b) => (a.r.date + a.r.start).localeCompare(b.r.date + b.r.start));
+  let c = cand(S.selIv); if (!c || !pool.includes(c)) { c = pool[0]; S.selIv = c ? c.id : null; }
+  const head = '<header class="top"><div><h1>Phỏng vấn</h1><p>Lên lịch 1 hoặc 2 vòng phỏng vấn, ghi nhận người phỏng vấn và kết quả chi tiết từng vòng.</p></div></header>';
+  if (!c) return head + '<div class="card empty">Chưa có ứng viên nào ở bước phỏng vấn. Mở một CV đạt yêu cầu và bấm <b>Mời phỏng vấn</b>, hoặc chuyển ứng viên sang cột Phỏng vấn ở <a href="#quy-trinh">Quy trình tuyển dụng</a>.</div>';
+  const iv = ivOf(c.id); const n = iv.rounds || 2; let ai = S.ivRound; if (ai > n) ai = 1;
+  const r = iv.r[ai - 1];
+  const rated = r.scores.filter(x => x > 0);
+  const avg = rated.length ? (rated.reduce((s, x) => s + x, 0) / rated.length).toFixed(1) : '—';
+  const vs = iv.r.slice(0, n).map(x => x.verdict);
+  let fin;
+  if (vs.includes('Không đạt')) fin = ['t-bad', 'Không đạt'];
+  else if (vs.includes('')) fin = ['t-info', 'Đang chờ kết quả vòng ' + (vs.indexOf('') + 1)];
+  else if (vs.every(v => v === 'Đạt')) fin = ['t-accent', 'Đạt, đề xuất gửi offer'];
+  else fin = ['t-warn', 'Cân nhắc, cần hội đồng thảo luận thêm'];
+  return head + '<div class="iv-grid">' +
+    '<aside class="stack">' +
+      '<div class="card pad stack"><h2>Ứng viên phỏng vấn</h2><div class="stack iv-list" style="gap:8px">' + pool.map(x => { const d = S.ivs[x.id]; const nx = d ? (d.r || []).slice(0, d.rounds || 2).find(rr => !rr.verdict) : null;
+        return '<button type="button" data-act="pick-iv" data-id="' + esc(x.id) + '" aria-pressed="' + (x.id === c.id) + '"><b>' + esc(x.name) + '</b><span class="sub">' + esc(jobTitle(x.jobId)) + '</span><span class="row" style="gap:6px">' + stagePill(x.stage) + '<span class="sub">' + (nx && nx.date ? fmtDay(nx.date) + (nx.start ? ' ' + nx.start : '') : d ? 'Đã có kết quả' : 'Chưa lên lịch') + '</span></span></button>'; }).join('') + '</div></div>' +
+      '<div class="card pad stack"><h2>Lịch sắp tới</h2>' + (upcoming.length ? upcoming.slice(0, 8).map(u => '<div class="kv"><span>' + fmtDay(u.r.date) + (u.r.start ? ' · ' + esc(u.r.start) : '') + '</span><b>' + esc(u.c.name) + ' · V' + (u.i + 1) + '</b></div>').join('') : '<span class="sub">Chưa có buổi phỏng vấn nào sắp diễn ra.</span>') + '</div>' +
+    '</aside>' +
+    '<section class="stack" aria-label="Chi tiết phỏng vấn">' +
+      '<div class="card pad row" style="gap:14px"><div class="avatar" style="width:46px;height:46px;font-size:15px">' + esc(initials(c.name)) + '</div><div class="stack" style="gap:2px;flex:1;min-width:200px"><div class="row" style="gap:8px"><b style="font-family:var(--serif);font-size:21px">' + esc(c.name) + '</b>' + (c.score != null ? '<span class="pill t-' + tone(c.score) + '">Điểm CV ' + c.score + '/100</span>' : '') + stagePill(c.stage) + '</div><span class="sub">' + esc([jobTitle(c.jobId), c.lang ? 'CV ' + (LANGS[c.lang] || LANGS.other).name.toLowerCase() + (c.lang !== 'vi' ? ' (đã dịch)' : '') : '', c.email].filter(Boolean).join(' · ')) + '</span></div>' +
+        '<div class="row"><span style="font-weight:600;font-size:13px">Số vòng:</span><div class="seg" role="group" aria-label="Số vòng phỏng vấn"><button type="button" data-act="iv-n" data-v="1" aria-pressed="' + (n === 1) + '">1 vòng</button><button type="button" data-act="iv-n" data-v="2" aria-pressed="' + (n === 2) + '">2 vòng</button></div></div></div>' +
+      '<div class="rtabs" style="grid-template-columns:repeat(' + n + ',minmax(0,1fr))">' + iv.r.slice(0, n).map((x, i) => '<button type="button" class="rtab" data-act="iv-round" data-v="' + (i + 1) + '" aria-pressed="' + (ai === i + 1) + '"><span class="rnum">' + (i + 1) + '</span><span class="stack" style="gap:0;flex:1;min-width:0"><b>Vòng ' + (i + 1) + ' · ' + esc(x.kind || '') + '</b><span class="sub">' + esc(fmtDay(x.date) + (x.start ? ' · ' + x.start + (x.end ? '–' + x.end : '') : '') + ' · ' + x.mode) + '</span></span><span class="pill t-' + (x.verdict ? VERD[x.verdict] : x.date ? 'info' : 'muted') + '">' + esc(x.verdict || (x.date ? 'Đã lên lịch' : 'Chưa lên lịch')) + '</span></button>').join('') + '</div>' +
+      '<div class="iv-body">' +
+        '<div class="card pad stack"><h2>Lịch phỏng vấn · Vòng ' + ai + '</h2>' +
+          '<label class="field"><span>Nội dung vòng</span><input class="input" id="iv-kind" data-iv="kind" value="' + esc(r.kind) + '"></label>' +
+          '<div class="grid2"><label class="field"><span>Ngày phỏng vấn *</span><input class="input" type="date" id="iv-date" data-iv="date" value="' + esc(r.date) + '"></label>' +
+          '<label class="field"><span>Hình thức</span><select class="input" id="iv-mode" data-iv="mode">' + ['Online','Trực tiếp','Điện thoại'].map(m => '<option' + (r.mode === m ? ' selected' : '') + '>' + m + '</option>').join('') + '</select></label>' +
+          '<label class="field"><span>Giờ bắt đầu *</span><input class="input" type="time" id="iv-start" data-iv="start" value="' + esc(r.start) + '"></label>' +
+          '<label class="field"><span>Giờ kết thúc</span><input class="input" type="time" id="iv-end" data-iv="end" value="' + esc(r.end) + '"></label></div>' +
+          '<label class="field"><span>Địa điểm / link họp</span><input class="input" id="iv-place" data-iv="place" value="' + esc(r.place) + '" placeholder="Phòng họp hoặc link Google Meet, Zoom…"></label>' +
+          '<div class="stack" style="gap:8px"><span style="font-size:12px;font-weight:500;color:var(--ink-2)">Người phỏng vấn *</span>' +
+            (r.people.length ? r.people.map((p, i) => '<div class="person"><div class="avatar" style="background:var(--info-soft);color:var(--info)">' + esc(initials(p.name)) + '</div><div style="flex:1;min-width:0"><b style="font-size:13px">' + esc(p.name) + '</b><div class="sub">' + esc(p.role || '') + '</div></div><button type="button" class="icon-btn" data-act="iv-del-person" data-v="' + i + '" aria-label="Xóa ' + esc(p.name) + '">' + ICON.x + '</button></div>').join('') : '<span class="sub">Chưa có người phỏng vấn.</span>') +
+            '<div class="grid2"><label class="field"><span class="sr">Tên người phỏng vấn</span><input class="input" id="iv-pname" placeholder="Họ tên"></label><label class="field"><span class="sr">Chức danh</span><input class="input" id="iv-prole" placeholder="Chức danh"></label></div>' +
+            '<div><button type="button" class="btn sm" data-act="iv-add-person">+ Thêm người phỏng vấn</button></div></div>' +
+          '<div><button type="button" class="btn" data-act="iv-copy">Sao chép thư mời phỏng vấn</button></div>' +
+        '</div>' +
+        '<div class="card pad stack"><div class="row"><div class="stack" style="gap:0"><h2>Kết quả phỏng vấn chi tiết · Vòng ' + ai + '</h2><span class="sub">Chấm mỗi tiêu chí từ 1 (kém) đến 5 (xuất sắc)</span></div><span class="spacer"></span><div class="mini" style="flex-direction:row;align-items:baseline;gap:6px"><span>Điểm trung bình</span><b style="font-size:22px;color:var(--accent)">' + avg + '</b><span>/ 5</span></div></div>' +
+          '<div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">' + CRIT.map((nm, i) => '<div class="crit"' + (i === 0 ? ' style="border-top:0"' : '') + '><span style="font-weight:500;font-size:13px">' + nm + '</span><div class="pills" role="group" aria-label="' + nm + '">' + [1,2,3,4,5].map(v => '<button type="button" data-act="iv-score" data-i="' + i + '" data-v="' + v + '" aria-pressed="' + (r.scores[i] === v) + '">' + v + '</button>').join('') + '</div><input class="input" style="min-height:34px" id="iv-c' + i + '" data-iv-comment="' + i + '" aria-label="Nhận xét ' + nm + '" placeholder="Nhận xét…" value="' + esc(r.comments[i] || '') + '"></div>').join('') + '</div>' +
+          '<div class="grid2"><label class="field"><span>Điểm mạnh</span><textarea class="input" rows="3" id="iv-str" data-iv="strengths">' + esc(r.strengths) + '</textarea></label><label class="field"><span>Điểm cần cải thiện</span><textarea class="input" rows="3" id="iv-imp" data-iv="improve">' + esc(r.improve) + '</textarea></label></div>' +
+          '<label class="field"><span>Nhận xét tổng quan của người phỏng vấn</span><textarea class="input" rows="3" id="iv-sum" data-iv="summary">' + esc(r.summary) + '</textarea></label>' +
+          '<div class="row verdicts" role="group" aria-label="Kết luận vòng"><b style="font-size:13px">Kết luận vòng ' + ai + ':</b>' + Object.keys(VERD).map(v => { const on = r.verdict === v; const t = VERD[v]; return '<button type="button" data-act="iv-verdict" data-v="' + v + '" aria-pressed="' + on + '" style="color:var(--' + t + ');' + (on ? 'background:var(--' + t + '-soft);border-color:var(--' + t + ')' : '') + '">' + v + '</button>'; }).join('') + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="final ' + fin[0] + '"><div class="stack" style="gap:0;flex:1;min-width:200px"><span class="label" style="color:inherit">Kết quả chung (' + n + ' vòng)</span><b style="font-size:17px">' + esc(fin[1]) + '</b></div>' +
+        '<button type="button" class="btn danger" data-act="move" data-id="' + esc(c.id) + '" data-v="rejected">Từ chối ứng viên</button><button type="button" class="btn primary" data-act="move" data-id="' + esc(c.id) + '" data-v="offer">Chuyển sang Đề nghị (Offer)</button></div>' +
+    '</section></div>';
+}
+
+function jobStats(j){
+  const cs = S.cands.filter(c => c.jobId === j.id);
+  const inSys = cs.filter(c => c.stage === 'hired').length;
+  const extra = Math.max(0, Number(j.hiredExtra) || 0);
+  const qty = Math.max(0, Number(j.qty) || 0);
+  const hired = inSys + extra;
+  const remain = Math.max(0, qty - hired);
+  const pipe = {cv: cs.filter(c => c.stage === 'new' || c.stage === 'screened').length, iv: cs.filter(c => c.stage === 'interview').length, offer: cs.filter(c => c.stage === 'offer').length};
+  const days = j.needBy ? Math.round((Date.parse(j.needBy) - Date.parse(todayIso())) / 864e5) : null;
+  let st;
+  if (!qty) st = ['muted', 'Chưa nhập số lượng'];
+  else if (!remain) st = ['accent', 'Đủ người'];
+  else if (days == null) st = ['info', 'Chưa đặt ngày cần người'];
+  else if (days < 0) st = ['bad', 'Quá hạn ' + (-days) + ' ngày, thiếu ' + remain];
+  else if (days === 0) st = ['bad', 'Cần người hôm nay, thiếu ' + remain];
+  else if (days <= 14) st = ['warn', 'Còn ' + days + ' ngày, thiếu ' + remain];
+  else st = ['info', 'Còn ' + days + ' ngày'];
+  return {qty: qty, hired: hired, inSys: inSys, extra: extra, remain: remain, pct: qty ? Math.min(100, Math.round(hired / qty * 100)) : 0, pipe: pipe, days: days, st: st, total: cs.length};
+}
+function needsCard(d){
+  const s = jobStats(d);
+  const box = (label, val, cls, sub) => '<div class="mini"><span>' + label + '</span><b class="' + (cls || '') + '" style="font-size:24px;font-variant-numeric:tabular-nums">' + val + '</b>' + (sub ? '<span>' + sub + '</span>' : '') + '</div>';
+  const inp = (id, key, label, ph, type, extra) => '<label class="field"><span>' + label + '</span><input class="input" id="' + id + '" data-job="' + key + '" type="' + type + '" value="' + esc(d[key] || '') + '" placeholder="' + esc(ph || '') + '"' + (extra || '') + '></label>';
+  return '<div class="card pad stack"><div class="row"><h2>Nhu cầu &amp; tiến độ tuyển</h2><span class="spacer"></span><span class="pill t-' + s.st[0] + '">' + esc(s.st[1]) + '</span></div>' +
+    '<div class="mini-grid four">' +
+      box('Cần tuyển', s.qty || '—', '', 'người') +
+      box('Đã tuyển', s.hired, 'c-accent', s.inSys + ' trong hệ thống' + (s.extra ? ' + ' + s.extra + ' ngoài' : '')) +
+      box('Còn tuyển', s.remain, s.remain ? 'c-warn' : 'c-accent', s.remain ? 'người' : 'Đủ chỉ tiêu') +
+      box('Ngày cần người', d.needBy ? fmtDay(d.needBy) : '—', s.days != null && s.days < 0 && s.remain ? 'c-bad' : '', s.days == null ? 'Chưa đặt' : s.days < 0 ? 'Đã qua ' + (-s.days) + ' ngày' : s.days === 0 ? 'Hôm nay' : 'Còn ' + s.days + ' ngày') +
+    '</div>' +
+    '<div class="score"><div class="bar" style="height:10px;border-radius:5px"><i class="bg-' + (s.remain ? 'warn' : 'accent') + '" style="width:' + s.pct + '%"></i></div><b style="width:auto;white-space:nowrap">' + s.pct + '%</b></div>' +
+    '<div class="sub">Nguồn ứng viên hiện có: ' + s.pipe.cv + ' CV đang xét · ' + s.pipe.iv + ' đang phỏng vấn · ' + s.pipe.offer + ' đã gửi offer.</div>' +
+    '<div class="grid2">' +
+      inp('j-qty', 'qty', 'Số lượng cần tuyển *', 'VD: 2', 'number', ' min="0"') +
+      inp('j-needby', 'needBy', 'Ngày dự kiến cần người', '', 'date') +
+      inp('j-hiredx', 'hiredExtra', 'Đã tuyển ngoài hệ thống', '0', 'number', ' min="0"') +
+      inp('j-deadline', 'deadline', 'Hạn nộp hồ sơ', '', 'date') +
+    '</div><span class="sub">Số đã tuyển tự đếm ứng viên ở bước <b>Đã tuyển</b> của vị trí này. Chỉ nhập ô "ngoài hệ thống" cho người tuyển qua kênh khác. Bấm Lưu vị trí để cập nhật số liệu.</span></div>';
+}
+function jobsOverview(){
+  const open = S.jobs.filter(j => j.status !== 'Đã đóng');
+  const st = open.map(j => ({j: j, s: jobStats(j)}));
+  const sum = k => st.reduce((a, x) => a + x.s[k], 0);
+  const soon = st.filter(x => x.s.remain && x.s.days != null && x.s.days >= 0 && x.s.days <= 14).length;
+  const late = st.filter(x => x.s.remain && x.s.days != null && x.s.days < 0).length;
+  const Q = sum('qty'), H = sum('hired'), Rm = sum('remain');
+  const rows = S.jobs.map(j => ({j: j, s: jobStats(j)})).sort((a, b) => (a.j.status === 'Đã đóng') - (b.j.status === 'Đã đóng') || (a.s.remain ? 0 : 1) - (b.s.remain ? 0 : 1) || (a.s.days == null ? 1e9 : a.s.days) - (b.s.days == null ? 1e9 : b.s.days));
+  const num = (v, cls) => '<td class="num' + (cls ? ' ' + cls : '') + '">' + v + '</td>';
+  return '<div class="kpis kpis5">' +
+      '<div class="card kpi"><span>Tổng cần tuyển</span><b>' + Q + '</b><span>' + open.length + ' vị trí đang mở</span></div>' +
+      '<div class="card kpi"><span>Đã tuyển</span><b class="c-accent">' + H + '</b><span>' + (Q ? Math.round(H / Q * 100) : 0) + '% chỉ tiêu</span></div>' +
+      '<div class="card kpi"><span>Còn phải tuyển</span><b' + (Rm ? ' class="c-warn"' : '') + '>' + Rm + '</b><span>người</span></div>' +
+      '<div class="card kpi"><span>Sắp đến hạn (≤ 14 ngày)</span><b' + (soon ? ' class="c-warn"' : '') + '>' + soon + '</b><span>vị trí còn thiếu người</span></div>' +
+      '<div class="card kpi"><span>Quá hạn cần người</span><b' + (late ? ' class="c-bad"' : '') + '>' + late + '</b><span>vị trí chưa đủ người</span></div>' +
+    '</div>' +
+    '<section class="card" aria-label="Bảng tổng hợp vị trí"><div class="toolbar"><div class="stack" style="gap:0"><h2>Tổng hợp theo vị trí</h2><span class="sub">Đã tuyển = ứng viên ở bước Đã tuyển + số tuyển ngoài hệ thống. Bấm một dòng để xem và sửa.</span></div><button type="button" class="btn sm" data-act="export-jobs">Xuất bảng (CSV)</button></div>' +
+    (rows.length ? '<div class="table-wrap"><table class="jobs-table"><thead><tr><th>Vị trí</th><th>Trạng thái</th><th class="num">Cần tuyển</th><th class="num">Đã tuyển</th><th class="num">Còn tuyển</th><th>Tiến độ</th><th>Đang xử lý</th><th>Ngày cần người</th><th>Tình hình</th></tr></thead><tbody>' +
+      rows.map(x => { const j = x.j, s = x.s;
+        return '<tr data-act="pick-job" data-id="' + esc(j.id) + '"' + (S.selJob === j.id ? ' class="sel"' : '') + '><td><b>' + esc(j.title) + '</b>' + sampleBadge(j) + '<div class="sub">' + esc([j.dept, j.loc].filter(Boolean).join(' · ') || '—') + '</div></td>' +
+          '<td><span class="pill t-' + (JOB_STATUS[j.status] || 'muted') + '">' + esc(j.status || 'Nháp') + '</span></td>' +
+          num(s.qty || '—') + num(s.hired, 'c-accent') + num(s.remain, s.remain ? 'c-warn' : '') +
+          '<td><div class="score" style="min-width:120px"><div class="bar"><i class="bg-' + (s.remain ? 'warn' : 'accent') + '" style="width:' + s.pct + '%"></i></div><span class="sub" style="width:44px;text-align:right">' + s.hired + '/' + (s.qty || '?') + '</span></div></td>' +
+          '<td class="sub">' + s.pipe.cv + ' CV · ' + s.pipe.iv + ' PV · ' + s.pipe.offer + ' offer</td>' +
+          '<td style="white-space:nowrap">' + (j.needBy ? fmtDay(j.needBy) : '<span class="sub">Chưa đặt</span>') + '</td>' +
+          '<td><span class="pill t-' + s.st[0] + '">' + esc(s.st[1]) + '</span></td></tr>'; }).join('') +
+      '</tbody><tfoot><tr><td><b>Tổng (' + rows.length + ' vị trí)</b></td><td></td>' + num('<b>' + rows.reduce((a, x) => a + x.s.qty, 0) + '</b>') + num('<b>' + rows.reduce((a, x) => a + x.s.hired, 0) + '</b>', 'c-accent') + num('<b>' + rows.reduce((a, x) => a + x.s.remain, 0) + '</b>', 'c-warn') + '<td colspan="4"></td></tr></tfoot></table></div>'
+      : '<div class="empty">Chưa có vị trí nào. Bấm <b>+ Tạo vị trí mới</b> để bắt đầu.</div>') +
+    '</section>';
+}
+function viewJobs(){
+  if (!S.jobDraft || (!S.jobDraft.id && !S.jobNew) || (S.jobDraft.id && S.jobDraft.id !== S.selJob)) {
+    const j = job(S.selJob) || S.jobs[0];
+    S.jobDraft = j ? clone(j) : blankJob(); S.selJob = S.jobDraft.id || null;
+  }
+  const d = S.jobDraft; const w = d.weights || (d.weights = clone(DEFAULT_W));
+  const total = WKEYS.reduce((s, k) => s + Number(w[k[0]] || 0), 0);
+  const cvN = d.id ? S.cands.filter(c => c.jobId === d.id).length : 0;
+  const tagList = (k, t) => (d[k] || []).map((s, i) => '<span class="tag t-' + t + '">' + esc(s) + '<button type="button" data-act="tag-del" data-k="' + k + '" data-i="' + i + '" aria-label="Xóa ' + esc(s) + '">×</button></span>').join('');
+  const inp = (id, key, label, ph, type) => '<label class="field"><span>' + label + '</span><input class="input" id="' + id + '" data-job="' + key + '" type="' + (type || 'text') + '" value="' + esc(d[key] || '') + '" placeholder="' + esc(ph || '') + '"></label>';
+  return '<header class="top"><div><h1>Vị trí tuyển dụng</h1><p>Nhập mô tả công việc (JD), kỹ năng bắt buộc và trọng số. Dùng khi bạn tự đánh giá CV và khi AI chấm điểm.</p></div><div class="row"><button type="button" class="btn" data-act="jobs-template">Tải file Excel mẫu</button><label class="btn" style="position:relative">' + (S.jobsImporting ? '<span class="spin"></span>Đang nhập…' : ICON.up.replace('width="22" height="22"', 'width="16" height="16"') + 'Nhập / cập nhật từ Excel, Word') + '<input id="jobs-import" type="file" multiple accept=".xlsx,.xls,.docx,.pdf,.txt" style="position:absolute;inset:0;opacity:0;cursor:pointer" aria-label="Nhập vị trí từ Excel hoặc Word"></label><button type="button" class="btn primary" data-act="new-job">+ Tạo vị trí mới</button></div></header>' + importBar() +
+    jobsOverview() +
+    '<div class="jobs-grid two" id="job-form">' +
+    '<section class="stack" aria-label="Thông tin vị trí">' +
+      '<div class="row"><div class="stack" style="gap:0;flex:1;min-width:200px"><span class="label">' + (d.id ? 'Đang xem vị trí' : 'Vị trí mới, chưa lưu') + '</span><b style="font-size:19px">' + esc(d.id ? d.title : 'Tạo vị trí mới') + '</b></div><label class="sr" for="j-status">Trạng thái</label><select id="j-status" class="input" data-job="status" style="width:auto">' + Object.keys(JOB_STATUS).map(s => '<option' + (d.status === s ? ' selected' : '') + '>' + s + '</option>').join('') + '</select><button type="button" class="btn primary" data-act="save-job">Lưu vị trí</button></div>' +
+      '<div class="card pad stack"><h2>Thông tin chung</h2><div class="grid2">' +
+        inp('j-title', 'title', 'Tên vị trí *', 'VD: Frontend Developer') + inp('j-dept', 'dept', 'Phòng ban', 'VD: Phòng Công nghệ') + inp('j-loc', 'loc', 'Địa điểm làm việc', 'VD: Hà Nội') +
+        '<label class="field"><span>Cấp bậc</span><select class="input" id="j-level" data-job="level"><option value="">Chọn cấp bậc</option>' + ['Thực tập','Junior','Middle','Senior','Trưởng nhóm','Quản lý'].map(l => '<option' + (d.level === l ? ' selected' : '') + '>' + l + '</option>').join('') + '</select></label>' +
+        inp('j-exp', 'exp', 'Kinh nghiệm tối thiểu', 'VD: 3 năm') + inp('j-salary', 'salary', 'Mức lương', 'VD: 20–30 triệu / Thỏa thuận') +
+      '</div></div>' +
+      needsCard(d) +
+      '<div class="card pad stack"><div class="row" style="align-items:flex-start"><div class="stack" style="gap:2px;flex:1;min-width:220px"><h2>Mô tả công việc (JD)</h2><span class="sub">Nhập trực tiếp, hoặc tải file JD (Word, Excel, PDF, TXT) để trang tự điền các ô. Tiếng Việt, Anh, Trung đều được.</span></div>' +
+        '<label class="btn" style="position:relative">' + (S.jdReading ? '<span class="spin"></span>Đang đọc file…' : ICON.up.replace('width="22" height="22"', 'width="16" height="16"') + 'Tải file JD') + '<input id="jd-file" type="file" accept=".docx,.xlsx,.xls,.pdf,.txt" style="position:absolute;inset:0;opacity:0;cursor:pointer" aria-label="Tải file JD"></label></div>' +
+        (d.jdFile ? '<div class="row" style="gap:8px;font-size:13px"><span class="pill t-muted">File JD: ' + esc(d.jdFile.name) + '</span>' + (d.jdFile.id ? '<button type="button" class="btn sm" data-act="open-file" data-id="' + esc(d.jdFile.id) + '">Mở file JD</button>' : '') + '<button type="button" class="btn sm ghost" data-act="jd-file-del">Bỏ file</button></div>' : '') +
+        '<label class="field"><span>Mô tả công việc *</span><textarea class="input" rows="7" id="j-jd" data-job="jd" placeholder="Nhiệm vụ chính, phạm vi công việc, dự án sẽ tham gia…">' + esc(d.jd || '') + '</textarea></label>' +
+        '<label class="field"><span>Yêu cầu ứng viên *</span><textarea class="input" rows="5" id="j-req" data-job="req" placeholder="Kỹ năng, kinh nghiệm, bằng cấp, ngoại ngữ cần có…">' + esc(d.req || '') + '</textarea></label>' +
+        '<label class="field"><span>Quyền lợi</span><textarea class="input" rows="3" id="j-benefit" data-job="benefit" placeholder="Lương thưởng, bảo hiểm, chế độ làm việc…">' + esc(d.benefit || '') + '</textarea></label>' +
+      '</div>' +
+      (d.id ? (S.confirm === 'deljob-' + d.id ? '<div class="confirm" role="alert">Xóa vị trí ' + esc(d.title) + '? ' + cvN + ' CV đang gắn với vị trí này sẽ chuyển thành chưa chọn vị trí.<span class="spacer"></span><button type="button" class="btn sm" data-act="cancel-confirm">Giữ lại</button><button type="button" class="btn sm danger" data-act="del-job">Xóa vị trí</button></div>' : '<div><button type="button" class="btn danger" data-act="ask-del-job">Xóa vị trí này</button></div>') : '') +
+    '</section>' +
+    '<aside class="stack ai-col" aria-label="Tiêu chí AI">' +
+      '<div class="aipanel"><h2>AI phân tích JD</h2><p style="font-size:13px">AI đọc mô tả công việc và yêu cầu để tạo tiêu chí chấm điểm CV.</p><button type="button" class="btn" data-act="analyze-jd"' + (S.sample && !S.jdBusy ? '' : ' disabled') + '>' + (S.jdBusy ? '<span class="spin"></span>Đang phân tích…' : ICON.spark + 'Phân tích JD') + '</button>' + (S.sample ? '' : '<span style="font-size:12px">Chưa kết nối AI: vào Cài đặt để nhập API key.</span>') + '</div>' +
+      '<div class="card pad stack"><h2>Tiêu chí chấm CV</h2>' +
+        '<div class="stack" style="gap:6px"><span style="font-size:12px;font-weight:600">Kỹ năng bắt buộc</span><div class="chips">' + (tagList('must', 'accent') || '<span class="sub">Chưa có</span>') + '</div><div class="row" style="flex-wrap:nowrap"><label class="sr" for="tag-must">Thêm kỹ năng bắt buộc</label><input class="input" id="tag-must" placeholder="Thêm kỹ năng…" style="min-height:34px"><button type="button" class="btn sm" data-act="tag-add" data-k="must">Thêm</button></div></div>' +
+        '<div class="stack" style="gap:6px"><span style="font-size:12px;font-weight:600">Kỹ năng ưu tiên</span><div class="chips">' + (tagList('nice', 'info') || '<span class="sub">Chưa có</span>') + '</div><div class="row" style="flex-wrap:nowrap"><label class="sr" for="tag-nice">Thêm kỹ năng ưu tiên</label><input class="input" id="tag-nice" placeholder="Thêm kỹ năng…" style="min-height:34px"><button type="button" class="btn sm" data-act="tag-add" data-k="nice">Thêm</button></div></div>' +
+      '</div>' +
+      '<div class="card pad stack"><div class="row"><h2>Trọng số chấm điểm</h2><span class="spacer"></span><b class="' + (total === 100 ? 'c-accent' : 'c-bad') + '">Tổng ' + total + '%</b></div>' +
+        WKEYS.map(k => '<label class="field"><span class="row" style="justify-content:space-between"><span>' + k[1] + '</span><b id="wv-' + k[0] + '">' + (w[k[0]] || 0) + '%</b></span><input type="range" min="0" max="100" step="5" id="w-' + k[0] + '" data-w="' + k[0] + '" value="' + (w[k[0]] || 0) + '"></label>').join('') +
+        (total !== 100 ? '<span class="sub c-bad">Tổng trọng số nên bằng 100%.</span>' : '') + '</div>' +
+      (d.id ? '<button type="button" class="btn" data-act="job-cvs">Xem ' + cvN + ' CV của vị trí này</button>' : '') +
+    '</aside></div>';
+}
+const JOB_COLS = [
+  ['needBy', /^(ngày (dự kiến )?cần người|ngày cần|cần người|ngày nhận việc|need by|start date|到岗时间|到岗日期)/i],
+  ['deadline', /^(hạn nộp( hồ sơ)?|hạn chót|deadline|截止日期|截止)/i],
+  ['hiredExtra', /^(đã tuyển|số đã tuyển|hired)/i],
+  ['qty', /^(số lượng( cần tuyển| tuyển)?|sl( cần tuyển)?|headcount|quantity|招聘人数|人数)/i],
+  ['must', /^(kỹ năng bắt buộc|kĩ năng bắt buộc|must[- ]have|required skills)/i],
+  ['nice', /^(kỹ năng ưu tiên|kĩ năng ưu tiên|nice[- ]to[- ]have|preferred skills)/i],
+  ['title', /^(tên vị trí|vị trí( tuyển dụng)?|chức danh|tên công việc|job title|position|职位名称|职位|岗位名称|岗位)$/i],
+  ['dept', /^(phòng ban|bộ phận|department|部门)/i],
+  ['loc', /^(địa điểm( làm việc)?|nơi làm việc|work location|location|工作地点)/i],
+  ['level', /^(cấp bậc|level|职级)/i],
+  ['exp', /^(kinh nghiệm( tối thiểu)?|số năm kinh nghiệm|experience|工作经验|经验)/i],
+  ['salary', /^(mức lương|lương|thu nhập|salary|薪资|薪酬)/i],
+  ['jd', /^(mô tả( công việc)?|nhiệm vụ|trách nhiệm|job description|responsibilities|岗位职责|工作职责|工作内容)/i],
+  ['req', /^(yêu cầu( ứng viên| công việc)?|requirements?|qualifications?|任职要求|岗位要求)/i],
+  ['benefit', /^(quyền lợi|phúc lợi|chế độ|benefits?|福利待遇|福利)/i],
+  ['status', /^(trạng thái|tình trạng|status|状态)/i]
+];
+const TEMPLATE_HEAD = ['Vị trí', 'Phòng ban', 'Địa điểm làm việc', 'Cấp bậc', 'Kinh nghiệm tối thiểu', 'Mức lương', 'Số lượng cần tuyển', 'Đã tuyển ngoài hệ thống', 'Ngày cần người', 'Hạn nộp hồ sơ', 'Trạng thái', 'Mô tả công việc', 'Yêu cầu ứng viên', 'Quyền lợi', 'Kỹ năng bắt buộc', 'Kỹ năng ưu tiên'];
+function toISO(v){
+  if (v == null || v === '') return '';
+  if (v instanceof Date && !isNaN(v)) { const d = new Date(v.getTime() + 432e5); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  if (typeof v === 'number' && v > 20000 && v < 80000) { const d = new Date(Math.round((v - 25569) * 864e5)); return d.toISOString().slice(0, 10); }
+  const t = String(v).trim();
+  let m = t.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/); if (m) return m[1] + '-' + m[2].padStart(2, '0') + '-' + m[3].padStart(2, '0');
+  m = t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2,4})/); if (m) { const y = m[3].length === 2 ? '20' + m[3] : m[3]; return y + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0'); }
+  m = t.match(/(\d{4})年(\d{1,2})月(\d{1,2})?/); if (m) return m[1] + '-' + m[2].padStart(2, '0') + '-' + (m[3] || '1').padStart(2, '0');
+  return '';
+}
+const cellStr = v => v instanceof Date ? fmtDay(toISO(v)) : String(v == null ? '' : v).trim();
+const splitList = v => String(v || '').split(/[,;\n•]/).map(x => x.replace(/^[\s\-*]+/, '').trim()).filter(Boolean).slice(0, 20);
+function rowToJob(map, r){
+  const j = {};
+  Object.keys(map).forEach(i => {
+    const k = map[i], v = r[i];
+    if (v == null || v === '') return;
+    if (k === 'needBy' || k === 'deadline') { const d = toISO(v); if (d) j[k] = d; }
+    else if (k === 'qty' || k === 'hiredExtra') { const n = String(v).match(/\d+/); if (n) j[k] = n[0]; }
+    else if (k === 'must' || k === 'nice') j[k] = splitList(v);
+    else if (k === 'status') { const st = Object.keys(JOB_STATUS).find(x => x.toLowerCase() === cellStr(v).toLowerCase()); if (st) j.status = st; }
+    else j[k] = cellStr(v).slice(0, k === 'jd' || k === 'req' || k === 'benefit' ? 8000 : 160);
+  });
+  return j;
+}
+function jobsFromSheet(wb){
+  const out = [];
+  wb.SheetNames.forEach(n => {
+    const rows = window.XLSX.utils.sheet_to_json(wb.Sheets[n], {header: 1, blankrows: false, raw: true, defval: ''});
+    let hi = -1, map = null;
+    for (let i = 0; i < Math.min(rows.length, 8); i++) {
+      const m = {}, used = {};
+      rows[i].forEach((h, ci) => { const t = String(h || '').trim().replace(/\s*\*$/, ''); if (!t) return; const f = JOB_COLS.find(c => !used[c[0]] && c[1].test(t)); if (f) { m[ci] = f[0]; used[f[0]] = 1; } });
+      if (Object.values(m).includes('title') && Object.keys(m).length >= 2) { hi = i; map = m; break; }
+    }
+    if (hi < 0) return;
+    rows.slice(hi + 1).forEach(r => { const j = rowToJob(map, r); if (j.title) out.push(j); });
+  });
+  return out;
+}
+async function importJobs(files){
+  S.jobsImporting = true; render(true);
+  const res = {added: [], updated: [], errors: []};
+  for (const file of Array.from(files)) {
+    const ext = (file.name.split('.').pop() || '').toLowerCase();
+    try {
+      let jobs = [];
+      if (ext === 'xlsx' || ext === 'xls') {
+        if (!window.XLSX) throw new Error('lib');
+        const wb = window.XLSX.read(await file.arrayBuffer(), {type: 'array', cellDates: true});
+        jobs = jobsFromSheet(wb);
+        if (!jobs.length) { const p = parseJD(sheetText(wb).text); const j = Object.assign({}, p.meta, {jd: p.jd, req: p.req, benefit: p.benefit}); if (j.qty) j.qty = (String(j.qty).match(/\d+/) || [''])[0]; if (!j.title) j.title = file.name.replace(/\.[^.]+$/, ''); jobs = [j]; }
+      } else if (ext === 'docx' || ext === 'pdf' || ext === 'txt') {
+        let text = '';
+        if (ext === 'docx') { if (!window.mammoth) throw new Error('lib'); text = (await window.mammoth.extractRawText({arrayBuffer: await file.arrayBuffer()})).value; }
+        else if (ext === 'pdf') text = await pdfText(await pdfDoc(file));
+        else text = await file.text();
+        if (text.replace(/\s/g, '').length < 20) throw new Error('empty');
+        const p = parseJD(text);
+        const j = Object.assign({}, p.meta, {jd: p.jd.slice(0, 8000), req: p.req.slice(0, 6000), benefit: p.benefit.slice(0, 4000)});
+        if (j.qty) j.qty = (String(j.qty).match(/\d+/) || [''])[0];
+        if (!j.title) j.title = file.name.replace(/\.[^.]+$/, '').replace(/[_\-]+/g, ' ').replace(/^(jd|mô tả công việc)\s*/i, '').trim();
+        if (S.assets) { try { const up = await S.assets.upload(file); j.jdFile = {name: file.name, id: up.id}; } catch (e) {} }
+        jobs = [j];
+      } else if (ext === 'doc') throw new Error('doc');
+      else throw new Error('type');
+      if (!jobs.length) throw new Error('nohead');
+      for (const j of jobs) {
+        const key = String(j.title).trim().toLowerCase();
+        const ex = S.jobs.find(x => String(x.title || '').trim().toLowerCase() === key);
+        if (ex) {
+          const body = Object.assign(clone(ex), j, {updatedAt: Date.now()}); delete body.id;
+          await S.db.doc('jobs/' + ex.id).set(body); res.updated.push(j.title);
+        } else {
+          const body = Object.assign(blankJob(), {status: 'Đang tuyển'}, j, {createdAt: Date.now(), updatedAt: Date.now()}); delete body.id;
+          await S.db.collection('jobs').doc().set(body); res.added.push(j.title);
+        }
+      }
+    } catch (e) {
+      const m = e && e.message;
+      res.errors.push(file.name + ': ' + (m === 'doc' ? 'file .doc (Word cũ) chưa đọc được, hãy lưu thành .docx' : m === 'type' ? 'định dạng chưa hỗ trợ' : m === 'empty' ? 'không có nội dung chữ' : m === 'lib' ? 'chưa tải được công cụ đọc file, kiểm tra mạng' : m === 'nohead' ? 'không tìm thấy cột "Vị trí"' : 'không đọc được file'));
+    }
+  }
+  S.jobsImporting = false; S.jobImport = res; S.jobDraft = null;
+  toast('Đã thêm ' + res.added.length + ', cập nhật ' + res.updated.length + ' vị trí' + (res.errors.length ? ', ' + res.errors.length + ' file lỗi' : '') + '.');
+  render(true);
+}
+function importBar(){
+  const r = S.jobImport; if (!r) return '';
+  const li = (arr, cls) => arr.map(x => '<li' + (cls ? ' class="' + cls + '"' : '') + '>' + esc(x) + '</li>').join('');
+  return '<div class="card pad stack" role="status"><div class="row"><h2>Kết quả nhập file</h2><span class="spacer"></span><button type="button" class="btn sm ghost" data-act="import-close">Đóng</button></div>' +
+    '<div class="grid2">' +
+      '<div><b class="c-accent">Thêm mới ' + r.added.length + ' vị trí</b><ul class="list">' + (li(r.added) || '<li class="sub">Không có</li>') + '</ul></div>' +
+      '<div><b>Cập nhật ' + r.updated.length + ' vị trí đã có</b><ul class="list">' + (li(r.updated) || '<li class="sub">Không có</li>') + '</ul></div>' +
+    '</div>' + (r.errors.length ? '<div><b class="c-bad">Lỗi</b><ul class="list">' + li(r.errors, 'c-bad') + '</ul></div>' : '') +
+    '<span class="sub">Vị trí trùng tên được cập nhật: ô nào trong file có dữ liệu sẽ thay thế dữ liệu cũ, ô trống giữ nguyên.</span></div>';
+}
+async function downloadTemplate(){
+  if (!window.XLSX) { toast('Chưa tải được công cụ Excel. Kiểm tra mạng rồi thử lại.'); return; }
+  const ex = ['Kế toán tổng hợp', 'Tài chính', 'Hà Nội', 'Middle', '2 năm', '15-20 triệu', 2, 0, '31/10/2026', '15/10/2026', 'Đang tuyển', '- Lập báo cáo tài chính\n- Kê khai thuế', '- Tốt nghiệp chuyên ngành Kế toán\n- Tối thiểu 2 năm kinh nghiệm', '- Lương tháng 13\n- Bảo hiểm đầy đủ', 'Excel, MISA, Báo cáo thuế', 'Tiếng Anh'];
+  const ws = window.XLSX.utils.aoa_to_sheet([TEMPLATE_HEAD, ex]);
+  ws['!cols'] = TEMPLATE_HEAD.map((h, i) => ({wch: i >= 11 ? 40 : 18}));
+  const guide = window.XLSX.utils.aoa_to_sheet([['Hướng dẫn'], ['Mỗi dòng ở sheet "Vị trí" là một vị trí tuyển dụng. Cột "Vị trí" là bắt buộc.'], ['Vị trí trùng tên với vị trí đã có sẽ được cập nhật; ô trống không làm mất dữ liệu cũ.'], ['Ngày ghi dạng ngày/tháng/năm, ví dụ 31/10/2026.'], ['Trạng thái: Đang tuyển, Nháp, Tạm dừng hoặc Đã đóng.'], ['Kỹ năng cách nhau bằng dấu phẩy.'], ['Xóa dòng ví dụ trước khi nhập.']]);
+  guide['!cols'] = [{wch: 90}];
+  const wb = window.XLSX.utils.book_new();
+  window.XLSX.utils.book_append_sheet(wb, ws, 'Vị trí');
+  window.XLSX.utils.book_append_sheet(wb, guide, 'Hướng dẫn');
+  const buf = window.XLSX.write(wb, {bookType: 'xlsx', type: 'array'});
+  await S.downloads.save({filename: 'mau_vi_tri_tuyen_dung.xlsx', data: new Blob([buf], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})});
+  toast('Đã tải file mẫu. Điền thông tin rồi bấm Nhập / cập nhật từ Excel, Word.');
+}
+const JD_KEYS = [
+  ['title', /^(tên vị trí|vị trí tuyển dụng|vị trí|chức danh|tên công việc|job title|position|职位名称|岗位名称|职位)/i],
+  ['dept', /^(phòng ban|bộ phận|department|部门)/i],
+  ['loc', /^(địa điểm làm việc|địa điểm|nơi làm việc|work location|location|工作地点)/i],
+  ['salary', /^(mức lương|lương|thu nhập|salary|薪资|薪酬|工资)/i],
+  ['exp', /^(kinh nghiệm|số năm kinh nghiệm|experience|工作经验|经验)/i],
+  ['qty', /^(số lượng|số lượng tuyển|headcount|quantity|招聘人数)/i],
+  ['level', /^(cấp bậc|level|职级)/i]
+];
+const JD_SECTIONS = [
+  ['jd', /^(mô tả công việc|mô tả|nhiệm vụ|trách nhiệm|công việc chính|job description|responsibilities|duties|岗位职责|工作职责|工作内容)/i],
+  ['req', /^(yêu cầu ứng viên|yêu cầu công việc|yêu cầu|tiêu chuẩn|requirements?|qualifications?|任职要求|岗位要求|任职资格)/i],
+  ['benefit', /^(quyền lợi|phúc lợi|chế độ đãi ngộ|chế độ|benefits?|perks|福利待遇|福利)/i]
+];
+const stripHead = (line, re) => line.replace(re, '').replace(/^[\s:：|\-–.)]+/, '').trim();
+function parseJD(text){
+  const sec = {jd: [], req: [], benefit: []}, meta = {}, pre = [];
+  let cur = null;
+  text.split(/\r?\n/).forEach(raw => {
+    const line = raw.replace(/[ \t ]+/g, ' ').trim(); if (!line) return;
+    const clean = line.replace(/^[#*•●▪\-–\s]+/, '').replace(/^([IVX]+|\d+)[.)]\s*/, '');
+    for (const kv of JD_SECTIONS) { if (kv[1].test(clean) && clean.length < 120) { cur = kv[0]; const rest = stripHead(clean, kv[1]); if (rest) sec[cur].push(rest); return; } }
+    for (const kv of JD_KEYS) { if (kv[1].test(clean) && !meta[kv[0]]) { const rest = stripHead(clean, kv[1]); if (rest && rest.length < 120) { meta[kv[0]] = rest; return; } } }
+    (cur ? sec[cur] : pre).push(line);
+  });
+  const found = sec.jd.length || sec.req.length || sec.benefit.length;
+  if (!found) sec.jd = pre; else if (pre.length) sec.jd = pre.concat(sec.jd);
+  return {meta: meta, jd: sec.jd.join('\n'), req: sec.req.join('\n'), benefit: sec.benefit.join('\n'), sectioned: !!found};
+}
+function sheetText(wb){
+  const lines = []; let jobs = 0;
+  wb.SheetNames.forEach(n => {
+    const rows = window.XLSX.utils.sheet_to_json(wb.Sheets[n], {header: 1, blankrows: false, raw: false, defval: ''});
+    if (!rows.length) return;
+    const head = rows[0].map(x => String(x).trim());
+    const isHeader = head.filter(Boolean).length >= 2 && head.filter(h => h && JD_SECTIONS.concat(JD_KEYS).some(kv => kv[1].test(h))).length >= 2 && rows.length > 1;
+    if (isHeader) {
+      jobs += rows.length - 1;
+      const r = rows[1];
+      head.forEach((h, i) => { const v = String(r[i] == null ? '' : r[i]).trim(); if (h && v) lines.push(h + ': ' + v); });
+    } else {
+      rows.forEach(r => { const cells = r.map(x => String(x == null ? '' : x).trim()).filter(Boolean); if (cells.length) lines.push(cells.join(cells.length === 2 ? ': ' : ' | ')); });
+    }
+  });
+  return {text: lines.join('\n'), jobs: jobs};
+}
+async function importJD(file){
+  const d = S.jobDraft; if (!d) return;
+  const ext = (file.name.split('.').pop() || '').toLowerCase();
+  S.jdReading = true; render(true);
+  try {
+    let text = '', jobs = 0;
+    if (ext === 'docx') { if (!window.mammoth) throw new Error('lib'); text = (await window.mammoth.extractRawText({arrayBuffer: await file.arrayBuffer()})).value; }
+    else if (ext === 'xlsx' || ext === 'xls') { if (!window.XLSX) throw new Error('lib'); const r = sheetText(window.XLSX.read(await file.arrayBuffer(), {type: 'array'})); text = r.text; jobs = r.jobs; }
+    else if (ext === 'pdf') { text = await pdfText(await pdfDoc(file)); }
+    else if (ext === 'txt') { text = await file.text(); }
+    else if (ext === 'doc') { throw new Error('doc'); }
+    else throw new Error('type');
+    if (text.replace(/\s/g, '').length < 20) throw new Error('empty');
+    const p = parseJD(text);
+    d.jd = p.jd.slice(0, 8000); d.req = p.req.slice(0, 6000); d.benefit = p.benefit.slice(0, 4000);
+    Object.keys(p.meta).forEach(k => { if (!d[k]) d[k] = k === 'qty' ? (String(p.meta[k]).match(/\d+/) || [''])[0] : p.meta[k].slice(0, 120); });
+    if (!d.title) d.title = file.name.replace(/\.[^.]+$/, '').replace(/[_\-]+/g, ' ').replace(/^(jd|mô tả công việc)\s*/i, '').trim();
+    if (S.assets) { try { const up = await S.assets.upload(file); d.jdFile = {name: file.name, id: up.id}; } catch (e) { d.jdFile = {name: file.name, id: null}; } }
+    else d.jdFile = {name: file.name, id: null};
+    toast((jobs > 1 ? 'File có ' + jobs + ' vị trí; đã lấy vị trí đầu tiên. ' : '') + (p.sectioned ? 'Đã điền JD từ file.' : 'Đã đưa toàn bộ nội dung file vào ô Mô tả công việc.') + ' Kiểm tra lại rồi bấm Lưu vị trí.');
+  } catch (e) {
+    const m = e && e.message;
+    toast(m === 'doc' ? 'File .doc (Word cũ) chưa đọc được. Mở bằng Word, chọn Lưu thành .docx rồi tải lại.' : m === 'type' ? 'Chỉ nhận file Word (.docx), Excel (.xlsx, .xls), PDF hoặc TXT.' : m === 'empty' ? 'Không tìm thấy nội dung chữ trong file này.' : m === 'lib' ? 'Chưa tải được công cụ đọc file. Kiểm tra mạng rồi thử lại.' : 'Không đọc được file này. Hãy sao chép nội dung JD và dán vào các ô.');
+  } finally { S.jdReading = false; render(true); }
+}
+function blankJob(){ return {id:null, title:'', dept:'', loc:'', level:'', exp:'', salary:'', qty:'', needBy:'', hiredExtra:'', deadline:'', status:'Nháp', jd:'', req:'', benefit:'', must:[], nice:[], weights:clone(DEFAULT_W)}; }
+
+// ---------- render ----------
+const VIEWS = {'ung-vien': viewCandidates, 'doc-cv': viewCV, 'quy-trinh': viewPipeline, 'phong-van': viewInterview, 'vi-tri': viewJobs};
+function render(force){
+  const ae = document.activeElement;
+  if (!force && ae && $('#main').contains(ae) && ae.matches('input:not([type=range]):not([type=file]),textarea,select')) { S.pending = true; return; }
+  S.pending = false;
+  const main = $('#main');
+  const keep = ae && ae.id && main.contains(ae) ? {id: ae.id, s: ae.selectionStart, e: ae.selectionEnd} : null;
+  main.innerHTML = (VIEWS[S.view] || viewCandidates)();
+  if (keep) { const el = document.getElementById(keep.id); if (el) { el.focus({preventScroll:true}); try { if (keep.s != null) el.setSelectionRange(keep.s, keep.e); } catch (e) {} } }
+  document.querySelectorAll('[data-nav]').forEach(a => a.getAttribute('data-nav') === S.view ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+  $('#n-cand').textContent = S.cands.length || '';
+  $('#n-iv').textContent = S.cands.filter(c => c.stage === 'interview').length || '';
+  $('#n-job').textContent = S.jobs.filter(j => j.status === 'Đang tuyển').length || '';
+  bindDrop();
+  remember();
+}
+function bindDrop(){
+  const dz = $('#drop'); if (!dz) return;
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('over'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('over'));
+  dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); if (e.dataTransfer && e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); });
+}
+function go(view){ if (location.hash !== '#' + view) location.hash = view; else { S.view = view; render(true); } window.scrollTo(0, 0); }
+function readHash(){ const h = location.hash.replace('#', ''); S.view = VIEWS[h] ? h : 'ung-vien'; S.confirm = null; render(true); }
+window.addEventListener('hashchange', readHash);
+document.addEventListener('focusout', () => { if (S.pending) setTimeout(() => { const ae = document.activeElement; if (!(ae && $('#main').contains(ae) && ae.matches('input:not([type=range]),textarea,select'))) render(true); }, 0); });
+
+// ---------- interview edits ----------
+function ivEdit(fn){
+  const c = cand(S.selIv); if (!c) return;
+  const iv = clone(ivOf(c.id)); const n = iv.rounds || 2; let ai = S.ivRound; if (ai > n) ai = 1;
+  fn(iv, iv.r[ai - 1], ai);
+  saveIv(c.id, iv);
+}
+function inviteText(c, iv){
+  const n = iv.rounds || 2;
+  const lines = ['Kính gửi ' + c.name + ',', '', 'Cảm ơn bạn đã ứng tuyển vị trí ' + jobTitle(c.jobId) + '. Chúng tôi trân trọng mời bạn tham gia phỏng vấn:'];
+  iv.r.slice(0, n).forEach((r, i) => {
+    lines.push('', 'Vòng ' + (i + 1) + ': ' + (r.kind || ''), '- Thời gian: ' + (r.start || '[giờ]') + (r.end ? ' – ' + r.end : '') + ', ngày ' + (r.date ? fmtDay(r.date) : '[ngày]'), '- Hình thức: ' + r.mode, '- Địa điểm / link: ' + (r.place || '[địa điểm]'));
+    if (r.people.length) lines.push('- Người phỏng vấn: ' + r.people.map(p => p.name + (p.role ? ' (' + p.role + ')' : '')).join(', '));
+  });
+  lines.push('', 'Vui lòng phản hồi email này để xác nhận tham gia.', '', 'Trân trọng,');
+  return lines.join('\n');
+}
+
+// ---------- events ----------
+document.addEventListener('click', async e => {
+  const t = e.target.closest('[data-act]'); if (!t) return;
+  const act = t.getAttribute('data-act'); const id = t.getAttribute('data-id'); const v = t.getAttribute('data-v');
+  if (t.tagName === 'TR' && e.target.closest('button,a')) return;
+  switch (act) {
+    case 'f-stage': S.f.stage = v; render(true); break;
+    case 'ai-mode': if (v === 'auto' && !S.sample) { toast('Để dùng AI, hãy nhập API key Anthropic ở mục Cài đặt trước.'); go('cai-dat'); break; } S.aiMode = v; remember(); footer(); toast(v === 'manual' ? 'Đã chọn tự đánh giá: CV tải lên sẽ không được gửi cho AI.' : 'Đã cho phép AI phân tích CV tải lên.'); render(true); break;
+    case 'edit-eval': { const c = cand(id); if (c) { openEval(c); render(true); const n0 = $('#m-skill'); if (n0) n0.focus(); } break; }
+    case 'save-eval': saveEval(); break;
+    case 'edit-prof': { const c = cand(id); if (c) { openProf(c); render(true); const n0 = $('#p-name'); if (n0) n0.focus(); } break; }
+    case 'cancel-prof': S.editProf = null; S.profDraft = null; render(true); break;
+    case 'save-prof': {
+      const c = cand(id); const d = S.profDraft; if (!c || !d) break;
+      const list = v => String(v || '').split(',').map(x => x.trim()).filter(Boolean);
+      const pf = Object.assign({}, d, {languages: list(d.languages), skills: list(d.skills), years: d.years === '' || d.years == null ? null : Number(d.years), edited: true});
+      const y = String(pf.dob || '').match(/(19|20)\d{2}/); pf.age = y ? new Date().getFullYear() - Number(y[0]) : null;
+      await saveProf(c, pf); S.editProf = null; S.profDraft = null; toast('Đã lưu thông tin ứng viên.'); render(true); break;
+    }
+    case 'reparse': { const c = cand(id); if (c && c.cvText) { await saveProf(c, parseCV(c.cvText)); toast('Đã đọc lại thông tin từ CV.'); } break; }
+    case 'save-prof-auto': { const c = cand(id); const pf = c && profOf(c); if (pf) { await saveProf(c, pf); toast('Đã lưu thông tin ứng viên.'); } break; }
+    case 'cancel-eval': S.editEval = null; S.evalDraft = null; render(true); break;
+    case 'open-cv': S.selCand = id; S.cvMode = 'vi'; S.confirm = null; go('doc-cv'); break;
+    case 'cv-mode': S.cvMode = v; render(true); break;
+    case 'analyze': analyze(id); break;
+    case 'stop-ai': if (S.running[id]) S.running[id].ctl.abort(); break;
+    case 'paste-cv': addPasted(); break;
+    case 'ask-del': S.confirm = 'del-' + id; render(true); break;
+    case 'cancel-confirm': S.confirm = null; render(true); break;
+    case 'del-cand': {
+      const c = cand(id); S.confirm = null;
+      try {
+        await S.db.doc('candidates/' + id).delete();
+        if (S.ivs[id]) await S.db.doc('interviews/' + id).delete();
+        if (c && c.file && c.file.assetId && S.assets) { try { await S.assets.delete(c.file.assetId); } catch (err) {} }
+        S.selCand = null; toast('Đã xóa hồ sơ ' + (c ? c.name : '') + '.');
+      } catch (err) { toast(dbErr(err)); }
+      break;
+    }
+    case 'invite': {
+      const c = cand(id); if (!c) break;
+      if (!S.ivs[id]) await saveIv(id, ivOf(id));
+      if (!['interview','offer','hired'].includes(c.stage)) await saveCand(id, {stage:'interview'});
+      S.selIv = id; S.ivRound = 1; go('phong-van'); break;
+    }
+    case 'dl-tr': {
+      const c = cand(id);
+      try { await S.downloads.save({filename: 'CV_' + String(c.name).replace(/\s+/g, '_') + '_tieng_Viet.txt', data: c.translationVi}); toast('Đã lưu bản dịch.'); }
+      catch (err) { if (err && err.code !== 'declined') toast('Chưa tải được file. Thử lại sau.'); }
+      break;
+    }
+    case 'export-csv': {
+      
+      const q = s => '"' + String(s == null ? '' : s).replace(/"/g, '""') + '"';
+      const rows = [['Họ tên','Ngày sinh','Giới tính','Email','Điện thoại','Địa chỉ','Vị trí ứng tuyển','Kinh nghiệm (năm)','Trình độ','Chuyên ngành','Trường','Ngoại ngữ','Kỹ năng','Điểm','Ngôn ngữ CV','Trạng thái','Ngày nộp','Ghi chú']].concat(S.cands.map(c => { const pf = profOf(c) || {}; return [c.name, pf.dob, pf.gender, c.email, c.phone, pf.address, jobTitle(c.jobId), pf.years, pf.eduLevel, pf.major, pf.school, (pf.languages || []).join('; '), (pf.skills || (c.analysis && c.analysis.skills) || []).join(', '), c.score == null ? '' : c.score, c.lang ? (LANGS[c.lang] || LANGS.other).name : '', (STAGE[c.stage] || STAGE.new).label, fmtDate(c.createdAt), c.note || '']; }));
+      try { await S.downloads.save({filename:'danh_sach_ung_vien.csv', data:'\ufeff' + rows.map(r => r.map(q).join(',')).join('\r\n')}); toast('Đã xuất danh sách.'); }
+      catch (err) { if (err && err.code !== 'declined') toast('Chưa xuất được file. Thử lại sau.'); }
+      break;
+    }
+    case 'clear-sample': {
+      S.confirm = null;
+      const cs = S.cands.filter(c => c.sample), js = S.jobs.filter(j => j.sample);
+      try { for (const c of cs) { await S.db.doc('candidates/' + c.id).delete(); if (S.ivs[c.id]) await S.db.doc('interviews/' + c.id).delete(); } for (const j of js) await S.db.doc('jobs/' + j.id).delete(); toast('Đã xóa dữ liệu mẫu.'); }
+      catch (err) { toast(dbErr(err)); }
+      break;
+    }
+    case 'move': {
+      const c = cand(id); if (!c) break;
+      await saveCand(id, {stage: v});
+      toast(c.name + ': ' + STAGE[v].label + '.');
+      if (v === 'interview' && !S.ivs[id]) saveIv(id, ivOf(id));
+      break;
+    }
+    case 'show-rejected': S.f.stage = 'rejected'; break;
+    case 'pick-iv': S.selIv = id; S.ivRound = 1; render(true); break;
+    case 'iv-n': ivEdit(iv => { iv.rounds = Number(v); if (Number(v) === 1) iv.r[0].kind = iv.r[0].kind === 'Phỏng vấn chuyên môn' ? 'Phỏng vấn chuyên môn & quản lý' : iv.r[0].kind; }); if (S.ivRound > Number(v)) S.ivRound = 1; render(true); break;
+    case 'iv-round': S.ivRound = Number(v); render(true); break;
+    case 'iv-score': ivEdit((iv, r) => { const i = Number(t.getAttribute('data-i')); r.scores[i] = r.scores[i] === Number(v) ? 0 : Number(v); }); render(true); break;
+    case 'iv-verdict': ivEdit((iv, r) => { r.verdict = r.verdict === v ? '' : v; }); render(true); break;
+    case 'iv-add-person': {
+      const nm = ($('#iv-pname').value || '').trim(); const rl = ($('#iv-prole').value || '').trim();
+      if (!nm) { toast('Nhập họ tên người phỏng vấn.'); $('#iv-pname').focus(); break; }
+      ivEdit((iv, r) => { r.people.push({name: nm.slice(0, 80), role: rl.slice(0, 80)}); }); render(true); break;
+    }
+    case 'iv-del-person': ivEdit((iv, r) => { r.people.splice(Number(v), 1); }); render(true); break;
+    case 'iv-copy': {
+      const c = cand(S.selIv); const txt = inviteText(c, ivOf(c.id));
+      try { await navigator.clipboard.writeText(txt); toast('Đã sao chép thư mời. Dán vào email để gửi cho ứng viên.'); }
+      catch (err) { const ta = document.createElement('textarea'); ta.value = txt; ta.className = 'input'; ta.rows = 10; t.parentNode.appendChild(ta); ta.select(); toast('Không sao chép tự động được. Nội dung đã được chọn sẵn, nhấn Ctrl+C để sao chép.'); }
+      break;
+    }
+    case 'new-job': S.jobDraft = blankJob(); S.jobNew = true; S.selJob = null; S.confirm = null; render(true); break;
+    case 'pick-job': S.selJob = id; S.jobNew = false; S.jobDraft = clone(job(id)); S.confirm = null; render(true); if (t.tagName === 'TR') { const f = $('#job-form'); if (f) f.scrollIntoView({behavior: 'smooth', block: 'start'}); } break;
+    case 'export-jobs': {
+      const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+      const rows = [['Vị trí','Phòng ban','Địa điểm','Trạng thái','Cần tuyển','Đã tuyển','Còn tuyển','Đang xét CV','Đang phỏng vấn','Đã gửi offer','Ngày cần người','Hạn nộp hồ sơ','Tình hình']].concat(S.jobs.map(j => { const s = jobStats(j); return [j.title, j.dept, j.loc, j.status, s.qty, s.hired, s.remain, s.pipe.cv, s.pipe.iv, s.pipe.offer, j.needBy ? fmtDay(j.needBy) : '', j.deadline ? fmtDay(j.deadline) : '', s.st[1]]; }));
+      try { await S.downloads.save({filename: 'tong_hop_vi_tri.csv', data: '\ufeff' + rows.map(r => r.map(q).join(',')).join('\r\n')}); toast('Đã xuất bảng tổng hợp vị trí.'); } catch (err) { toast('Chưa xuất được file.'); }
+      break;
+    }
+    case 'tag-add': { const k = t.getAttribute('data-k'); const inp = $('#tag-' + k); const val = (inp.value || '').trim(); if (!val) break; S.jobDraft[k] = (S.jobDraft[k] || []).concat([val.slice(0, 60)]); render(true); const n2 = $('#tag-' + k); if (n2) n2.focus(); break; }
+    case 'tag-del': { const k = t.getAttribute('data-k'); S.jobDraft[k].splice(Number(t.getAttribute('data-i')), 1); render(true); break; }
+    case 'analyze-jd': analyzeJD(); break;
+    case 'jobs-template': downloadTemplate(); break;
+    case 'import-close': S.jobImport = null; render(true); break;
+    case 'jd-file-del': if (S.jobDraft) { delete S.jobDraft.jdFile; render(true); } break;
+    case 'save-job': {
+      const d = S.jobDraft; if (!(d.title || '').trim()) { toast('Nhập tên vị trí trước khi lưu.'); $('#j-title').focus(); break; }
+      const body = clone(d); delete body.id; body.updatedAt = Date.now(); if (!body.createdAt) body.createdAt = Date.now();
+      try { let ref; if (d.id) { ref = S.db.doc('jobs/' + d.id); await ref.set(body); } else { ref = S.db.collection('jobs').doc(); await ref.set(body); d.id = ref.id; S.selJob = ref.id; S.jobNew = false; } toast('Đã lưu vị trí ' + d.title + '.'); render(true); }
+      catch (err) { toast(dbErr(err)); }
+      break;
+    }
+    case 'ask-del-job': S.confirm = 'deljob-' + S.jobDraft.id; render(true); break;
+    case 'del-job': {
+      const jid = S.jobDraft.id; S.confirm = null;
+      try { await S.db.doc('jobs/' + jid).delete(); for (const c of S.cands.filter(c => c.jobId === jid)) await saveCand(c.id, {jobId:''}); S.jobDraft = null; S.selJob = null; toast('Đã xóa vị trí.'); render(true); }
+      catch (err) { toast(dbErr(err)); }
+      break;
+    }
+    case 'job-cvs': S.f = {stage:'all', lang:'all', job:S.jobDraft.id, q:'', sort:'score'}; go('ung-vien'); break;
+  }
+  if (act === 'show-rejected') { S.f = {stage:'rejected', lang:'all', job:'all', q:'', sort:'score'}; }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches('tr[data-act]')) e.target.click();
+  if (e.key === 'Enter' && e.target.id && /^tag-/.test(e.target.id)) { e.preventDefault(); const b = e.target.parentNode.querySelector('[data-act="tag-add"]'); if (b) b.click(); }
+  if (e.key === 'Enter' && (e.target.id === 'iv-pname' || e.target.id === 'iv-prole')) { e.preventDefault(); const b = document.querySelector('[data-act="iv-add-person"]'); if (b) b.click(); }
+});
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'f-q') { S.f.q = t.value; clearTimeout(S._qt); S._qt = setTimeout(() => render(true), 200); return; }
+  if (t.hasAttribute('data-p') && S.profDraft) { S.profDraft[t.getAttribute('data-p')] = t.value; return; }
+  if (t.hasAttribute('data-m') && S.evalDraft) {
+    S.evalDraft[t.getAttribute('data-m')] = t.value;
+    const c = cand(S.editEval); const j = c && job(c.jobId); const sc = evalScore(S.evalDraft, (j && j.weights) || DEFAULT_W);
+    const tot = $('#m-total'); if (tot) tot.textContent = sc == null ? '—' : sc;
+    return;
+  }
+  if (t.hasAttribute('data-m-must') && S.evalDraft) { S.evalDraft.must[Number(t.getAttribute('data-m-must'))].ok = t.checked; render(true); return; }
+  if (t.hasAttribute('data-job') && S.jobDraft) { S.jobDraft[t.getAttribute('data-job')] = t.value; return; }
+  if (t.hasAttribute('data-w') && S.jobDraft) { S.jobDraft.weights[t.getAttribute('data-w')] = Number(t.value); const lab = $('#wv-' + t.getAttribute('data-w')); if (lab) lab.textContent = t.value + '%'; return; }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'up-file' && t.files && t.files.length) { handleFiles(t.files); t.value = ''; return; }
+  if (t.id === 'jd-file' && t.files && t.files[0]) { importJD(t.files[0]); t.value = ''; return; }
+  if (t.id === 'jobs-import' && t.files && t.files.length) { importJobs(t.files); t.value = ''; return; }
+  if (t.id === 'up-job') { S.upJob = t.value; return; }
+  if (t.id === 'f-job') { S.f.job = t.value; render(true); return; }
+  if (t.id === 'f-lang') { S.f.lang = t.value; render(true); return; }
+  if (t.id === 'f-sort') { S.f.sort = t.value; render(true); return; }
+  if (t.id === 'cv-pick') { S.selCand = t.value; S.cvMode = 'vi'; S.confirm = null; render(true); return; }
+  if (t.id === 'cv-note') { saveCand(S.selCand, {note: t.value.slice(0, 4000)}); return; }
+  if (t.id === 'cv-stage') { saveCand(S.selCand, {stage: t.value}); return; }
+  if (t.id === 'cv-job') { saveCand(S.selCand, {jobId: t.value}); toast('Đã đổi vị trí. Bấm Phân tích lại để chấm điểm theo vị trí mới.'); return; }
+  if (t.id === 'pipe-job') { S.pipeJob = t.value; render(true); return; }
+  if (t.hasAttribute('data-w')) { render(true); return; }
+  if (t.hasAttribute('data-iv')) { const k = t.getAttribute('data-iv'); ivEdit((iv, r) => { r[k] = t.value.slice(0, 3000); }); return; }
+  if (t.hasAttribute('data-iv-comment')) { const i = Number(t.getAttribute('data-iv-comment')); ivEdit((iv, r) => { r.comments[i] = t.value.slice(0, 500); }); return; }
+});
+
+// ---------- local storage on this device (IndexedDB) ----------
+const IDB = {
+  db: null,
+  open(){ return new Promise((res, rej) => { const r = indexedDB.open('hr-recruitment', 1); r.onupgradeneeded = () => { r.result.createObjectStore('docs'); r.result.createObjectStore('files'); }; r.onsuccess = () => { IDB.db = r.result; res(); }; r.onerror = () => rej(r.error); }); },
+  write(store, fn){ return new Promise((res, rej) => { const t = IDB.db.transaction(store, 'readwrite'); fn(t.objectStore(store)); t.oncomplete = () => res(); t.onerror = () => rej(t.error); t.onabort = () => rej(t.error); }); },
+  get(store, key){ return new Promise(res => { const r = IDB.db.transaction(store).objectStore(store).get(key); r.onsuccess = () => res(r.result || null); r.onerror = () => res(null); }); },
+  all(store){ return new Promise((res, rej) => { const out = []; const c = IDB.db.transaction(store).objectStore(store).openCursor(); c.onsuccess = () => { const cur = c.result; if (cur) { out.push([cur.key, cur.value]); cur.continue(); } else res(out); }; c.onerror = () => rej(c.error); }); }
+};
+function makeLocalDB(initial){
+  const data = {};
+  initial.forEach(kv => { data[kv[0]] = kv[1]; });
+  const subs = {};
+  const snapOf = coll => { const docs = Object.keys(data).filter(k => k.split('/')[0] === coll).map(k => { const body = data[k]; return {id: k.split('/')[1], exists: true, data: () => body}; }); return {docs: docs, size: docs.length, empty: !docs.length}; };
+  const emit = coll => (subs[coll] || []).forEach(fn => { try { fn(snapOf(coll)); } catch (e) { console.error(e); } });
+  const persist = (path, body) => IDB.write('docs', s => { if (body === undefined) s.delete(path); else s.put(body, path); }).catch(e => { toast('Không lưu được dữ liệu: bộ nhớ trình duyệt có thể đã đầy. Hãy sao lưu và xóa bớt hồ sơ cũ.'); throw {code: 'quota_exceeded'}; });
+  const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  function docRef(path){
+    const coll = path.split('/')[0], id = path.split('/')[1];
+    return {id: id, path: path,
+      async get(){ const b = data[path]; return {id: id, exists: !!b, data: () => b}; },
+      async set(body){ data[path] = clone(body); emit(coll); await persist(path, data[path]); },
+      async update(patch){ if (!data[path]) throw {code: 'invalid_argument'}; data[path] = Object.assign({}, data[path], clone(patch)); emit(coll); await persist(path, data[path]); },
+      async delete(){ delete data[path]; emit(coll); await persist(path, undefined); }
+    };
+  }
+  return {
+    doc: docRef,
+    collection(coll){ return {
+      doc(id){ return docRef(coll + '/' + (id || newId())); },
+      onSnapshot(fn){ (subs[coll] = subs[coll] || []).push(fn); setTimeout(() => fn(snapOf(coll)), 0); return () => { subs[coll] = subs[coll].filter(f => f !== fn); }; }
+    }; },
+    dump(){ return clone(data); },
+    count(coll){ return Object.keys(data).filter(k => k.split('/')[0] === coll).length; },
+    isEmpty(){ return !Object.keys(data).length; },
+    async replaceAll(obj){
+      Object.keys(data).forEach(k => delete data[k]);
+      Object.keys(obj).forEach(k => { if (/^(jobs|candidates|interviews)\/[^/]+$/.test(k) && obj[k] && typeof obj[k] === 'object') data[k] = obj[k]; });
+      await IDB.write('docs', s => { s.clear(); Object.keys(data).forEach(k => s.put(data[k], k)); });
+      ['jobs', 'candidates', 'interviews'].forEach(emit);
+    }
+  };
+}
+const LocalFiles = {
+  async upload(file){ const id = 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); await IDB.write('files', s => s.put(file, id)); return {id: id}; },
+  get(id){ return IDB.get('files', id); },
+  async delete(id){ await IDB.write('files', s => s.delete(id)); return {deleted: true}; }
+};
+const LocalDownloads = {
+  async save(o){
+    const ext = (o.filename.split('.').pop() || '').toLowerCase();
+    const type = {csv: 'text/csv;charset=utf-8', json: 'application/json', txt: 'text/plain;charset=utf-8'}[ext] || 'application/octet-stream';
+    const blob = o.data instanceof Blob ? o.data : new Blob([o.data], {type: type});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = o.filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    return {status: 'saved'};
+  }
+};
+
+// ---------- AI through the user's own Anthropic API key ----------
+const AI_KEY = 'hr-recruitment-ai';
+const MODELS = [['claude-sonnet-5', 'Claude Sonnet 5 (cân bằng, nên dùng)'], ['claude-haiku-4-5-20251001', 'Claude Haiku 4.5 (nhanh, rẻ nhất)'], ['claude-opus-5-5', 'Claude Opus 5.5 (mạnh nhất, đắt nhất)']];
+function loadAI(){ try { return JSON.parse(localStorage.getItem(AI_KEY) || '{}'); } catch (e) { return {}; } }
+function saveAIcfg(cfg){ try { localStorage.setItem(AI_KEY, JSON.stringify(cfg)); } catch (e) { toast('Trình duyệt không cho lưu cài đặt.'); } }
+function parseJSON(t){
+  try { return JSON.parse(t); } catch (e) {}
+  const f = t.match(/```(?:json)?\s*([\s\S]*?)```/); if (f) { try { return JSON.parse(f[1]); } catch (e) {} }
+  const a = t.search(/[\[{]/), b = Math.max(t.lastIndexOf('}'), t.lastIndexOf(']'));
+  if (a >= 0 && b > a) { try { return JSON.parse(t.slice(a, b + 1)); } catch (e) {} }
+  throw {code: 'invalid_json', text: t};
+}
+function makeAI(cfg){
+  if (!cfg || !cfg.key) return null;
+  const toB64 = b => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1]); r.onerror = rej; r.readAsDataURL(b); });
+  async function call(prompt, opts){
+    const content = [];
+    for (const img of (opts.images || [])) {
+      const mt = /^image\/(png|jpeg|webp|gif)$/.test(img.type || '') ? img.type : 'image/png';
+      content.push({type: 'image', source: {type: 'base64', media_type: mt, data: await toB64(img)}});
+    }
+    content.push({type: 'text', text: prompt + '\n\nChỉ trả lời bằng một giá trị JSON hợp lệ, không thêm chữ nào khác.'});
+    let r;
+    try {
+      r = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', signal: opts.signal,
+        headers: {'content-type': 'application/json', 'x-api-key': cfg.key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true'},
+        body: JSON.stringify({model: cfg.model || MODELS[0][0], max_tokens: 16000, messages: [{role: 'user', content: content}]})});
+    } catch (e) { if (e && e.name === 'AbortError') throw {code: 'cancelled'}; throw {code: 'network'}; }
+    if (!r.ok) {
+      let msg = ''; try { msg = (await r.json()).error.message; } catch (e) {}
+      const code = r.status === 401 || r.status === 403 ? 'auth' : r.status === 429 ? 'rate_limited' : r.status === 529 || r.status === 503 ? 'overloaded' : r.status === 413 ? 'prompt_too_large' : r.status === 404 ? 'model' : r.status === 400 && /credit|billing/i.test(msg) ? 'billing' : 'upstream_error';
+      throw {code: code, message: msg};
+    }
+    const j = await r.json();
+    return (j.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+  }
+  return {
+    async json(prompt, opts){ return parseJSON(await call(prompt, opts || {})); },
+    async test(){ return parseJSON(await call('Trả lời đúng: {"ok": true}', {})); }
+  };
+}
+const baseAiErr = aiErr;
+aiErr = function(e){
+  const c = e && e.code;
+  if (c === 'auth') return 'API key không đúng hoặc đã bị thu hồi. Kiểm tra lại ở Cài đặt.';
+  if (c === 'billing') return 'Tài khoản API hết tín dụng. Nạp thêm tại console.anthropic.com.';
+  if (c === 'network') return 'Không kết nối được máy chủ AI. Kiểm tra mạng rồi thử lại.';
+  if (c === 'overloaded') return 'Máy chủ AI đang quá tải. Thử lại sau ít phút.';
+  if (c === 'model') return 'Mô hình AI đã chọn không dùng được với key này. Chọn mô hình khác ở Cài đặt.';
+  return baseAiErr(e);
+};
+
+// ---------- settings view ----------
+function viewSettings(){
+  const cfg = loadAI();
+  const n = k => S.db ? S.db.count(k) : 0;
+  const masked = cfg.key ? 'Đã lưu key …' + esc(cfg.key.slice(-4)) : 'Chưa có key';
+  return '<header class="top"><div><h1>Cài đặt</h1><p>Kết nối AI (không bắt buộc) và sao lưu dữ liệu trên máy này.</p></div></header>' +
+    '<section class="card pad stack" aria-label="Kết nối AI"><div class="row"><h2>Kết nối AI (không bắt buộc)</h2><span class="spacer"></span><span class="pill ' + (S.sample ? 't-accent' : 't-muted') + '">' + (S.sample ? 'AI đã kết nối' : 'Chưa kết nối AI') + '</span></div>' +
+      '<p style="font-size:13px;max-width:70ch">AI là tùy chọn: không có AI, bạn vẫn tự đánh giá CV đầy đủ. Muốn AI đọc, dịch và chấm CV, nhập API key Anthropic của bạn (tạo tại <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>). Key chỉ lưu trong trình duyệt của máy này và gửi thẳng tới Anthropic; chi phí tính vào tài khoản API của bạn. Không nhập key trên máy tính dùng chung.</p>' +
+      '<div class="grid2"><label class="field"><span>API key Anthropic · ' + masked + '</span><input class="input" id="set-key" type="password" autocomplete="off" placeholder="sk-ant-…"></label>' +
+      '<label class="field"><span>Mô hình AI</span><select class="input" id="set-model">' + MODELS.map(m => '<option value="' + m[0] + '"' + ((cfg.model || MODELS[0][0]) === m[0] ? ' selected' : '') + '>' + m[1] + '</option>').join('') + '</select></label></div>' +
+      '<div class="row"><button type="button" class="btn primary" data-act="set-save">Lưu cài đặt AI</button><button type="button" class="btn" data-act="set-test"' + (S.sample ? '' : ' disabled') + '>' + (S.aiTesting ? '<span class="spin"></span>Đang kiểm tra…' : 'Kiểm tra kết nối') + '</button>' + (cfg.key ? '<button type="button" class="btn danger" data-act="set-clear">Xóa key</button>' : '') + '</div></section>' +
+    '<section class="card pad stack" aria-label="Dữ liệu"><h2>Dữ liệu trên máy này</h2>' +
+      '<p style="font-size:13px;max-width:70ch">Mọi dữ liệu nằm trong trình duyệt đang dùng: ' + n('jobs') + ' vị trí, ' + n('candidates') + ' ứng viên, ' + n('interviews') + ' hồ sơ phỏng vấn. Máy khác hoặc trình duyệt khác sẽ không thấy. Xóa dữ liệu duyệt web là mất dữ liệu, nên sao lưu thường xuyên. Muốn chuyển cho đồng nghiệp: sao lưu rồi gửi file để họ khôi phục.</p>' +
+      '<div class="row"><button type="button" class="btn primary" data-act="backup">Sao lưu dữ liệu (.json)</button><label class="btn" style="position:relative">Khôi phục từ file sao lưu<input id="restore-file" type="file" accept=".json,application/json" style="position:absolute;inset:0;opacity:0;cursor:pointer" aria-label="Chọn file sao lưu"></label>' +
+      (S.confirm === 'wipe' ? '' : '<button type="button" class="btn danger" data-act="ask-wipe">Xóa toàn bộ dữ liệu</button>') + '</div>' +
+      '<p class="sub">File sao lưu gồm vị trí, ứng viên, nội dung CV, bản dịch, đánh giá và phỏng vấn; không gồm file CV gốc (PDF, ảnh). Khôi phục sẽ thay toàn bộ dữ liệu hiện có.</p>' +
+      (S.confirm === 'wipe' ? '<div class="confirm" role="alert">Xóa vĩnh viễn mọi vị trí, ứng viên, file CV và lịch phỏng vấn trên máy này?<span class="spacer"></span><button type="button" class="btn sm" data-act="cancel-confirm">Giữ lại</button><button type="button" class="btn sm danger" data-act="wipe">Xóa toàn bộ</button></div>' : '') +
+    '</section>';
+}
+VIEWS['cai-dat'] = viewSettings;
+document.addEventListener('click', async e => {
+  const t = e.target.closest('[data-act]'); if (!t) return;
+  const act = t.getAttribute('data-act');
+  if (act === 'open-file') {
+    const b = await S.assets.get(t.getAttribute('data-id'));
+    if (!b) { toast('Không tìm thấy file gốc trên máy này.'); return; }
+    const url = URL.createObjectURL(b); const w = window.open(url, '_blank');
+    if (!w) { const a = document.createElement('a'); a.href = url; a.download = b.name || 'CV'; document.body.appendChild(a); a.click(); a.remove(); }
+    return;
+  }
+  if (act === 'set-save') {
+    const cfg = loadAI(); const k = ($('#set-key').value || '').trim();
+    if (k) { if (!/^sk-ant-/.test(k)) { toast('API key Anthropic thường bắt đầu bằng sk-ant-. Kiểm tra lại.'); return; } cfg.key = k; }
+    cfg.model = $('#set-model').value; saveAIcfg(cfg); S.sample = makeAI(cfg); S.canImages = !!S.sample; footer();
+    toast(S.sample ? 'Đã lưu key. Bấm Kiểm tra kết nối, rồi chọn Dùng AI phân tích ở khung Thêm CV mới.' : 'Đã lưu mô hình. Chưa có API key.'); render(true); return;
+  }
+  if (act === 'set-clear') { const cfg = loadAI(); delete cfg.key; saveAIcfg(cfg); S.sample = null; S.canImages = false; S.aiMode = 'manual'; remember(); footer(); toast('Đã xóa API key khỏi máy này.'); render(true); return; }
+  if (act === 'set-test') {
+    S.aiTesting = true; render(true);
+    try { const r = await S.sample.test(); toast(r && r.ok ? 'Kết nối AI thành công.' : 'AI đã trả lời, kết nối hoạt động.'); }
+    catch (err) { toast(aiErr(err)); }
+    finally { S.aiTesting = false; render(true); }
+    return;
+  }
+  if (act === 'backup') {
+    const d = new Date(); const stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+    await S.downloads.save({filename: 'hr-recruitment-sao-luu-' + stamp + '.json', data: JSON.stringify({app: 'hr-recruitment', version: 1, exportedAt: d.toISOString(), docs: S.db.dump()}, null, 1)});
+    toast('Đã tạo file sao lưu.'); return;
+  }
+  if (act === 'ask-wipe') { S.confirm = 'wipe'; render(true); return; }
+  if (act === 'wipe') {
+    S.confirm = null;
+    await S.db.replaceAll({}); await IDB.write('files', s => s.clear());
+    try { localStorage.setItem('hr-seeded', '1'); } catch (err) {}
+    toast('Đã xóa toàn bộ dữ liệu.'); render(true); return;
+  }
+});
+document.addEventListener('change', async e => {
+  const t = e.target;
+  if (t.id !== 'restore-file' || !t.files || !t.files[0]) return;
+  try {
+    const obj = JSON.parse(await t.files[0].text());
+    if (!obj || obj.app !== 'hr-recruitment' || !obj.docs) throw new Error('bad');
+    await S.db.replaceAll(obj.docs);
+    toast('Đã khôi phục ' + S.db.count('candidates') + ' ứng viên và ' + S.db.count('jobs') + ' vị trí.');
+  } catch (err) { toast('File không đúng định dạng sao lưu của HR Recruitment.'); }
+  t.value = ''; render(true);
+});
+
+// ---------- boot ----------
+const SEED = {"jobs/mau-be": {"benefit": "- Lương tháng 13, thưởng dự án.\n- Bảo hiểm đầy đủ.", "createdAt": 1790400001000, "deadline": "2026-10-20", "dept": "Phòng Công nghệ", "exp": "4 năm", "jd": "- Thiết kế và phát triển API cho hệ thống.\n- Quản lý cơ sở dữ liệu và tối ưu truy vấn.\n- Triển khai dịch vụ trên nền tảng cloud.", "level": "Senior", "loc": "TP.HCM", "must": ["Node.js", "PostgreSQL", "REST API", "≥ 4 năm kinh nghiệm"], "nice": ["AWS", "Docker"], "qty": "1", "req": "- Tối thiểu 4 năm kinh nghiệm Backend.\n- Thành thạo Node.js, PostgreSQL.\n- Có kinh nghiệm với AWS hoặc GCP.", "salary": "", "sample": true, "status": "Đang tuyển", "title": "Backend Developer", "weights": {"edu": 10, "exp": 30, "lang": 10, "skill": 50}}, "jobs/mau-da": {"benefit": "- Đào tạo nội bộ, lộ trình thăng tiến rõ ràng.", "createdAt": 1790400002000, "deadline": "2026-11-15", "dept": "Phân tích dữ liệu", "exp": "1 năm", "jd": "- Thu thập, làm sạch và phân tích dữ liệu kinh doanh.\n- Xây dựng dashboard báo cáo định kỳ.", "level": "Junior", "loc": "Hà Nội", "must": ["SQL", "Excel"], "nice": ["Python", "Power BI"], "qty": "1", "req": "- Thành thạo SQL và Excel.\n- Biết Python hoặc Power BI là lợi thế.", "salary": "", "sample": true, "status": "Nháp", "title": "Data Analyst", "weights": {"edu": 10, "exp": 30, "lang": 10, "skill": 50}}, "jobs/mau-fe": {"benefit": "- Lương tháng 13, thưởng theo hiệu quả công việc.\n- Bảo hiểm đầy đủ, khám sức khỏe định kỳ.\n- Làm việc hybrid 2 ngày/tuần.", "createdAt": 1790400000000, "deadline": "2026-10-31", "dept": "Phòng Công nghệ", "exp": "3 năm", "jd": "- Phát triển giao diện web cho sản phẩm chính bằng React.\n- Phối hợp với đội thiết kế chuyển bản thiết kế Figma thành giao diện hoàn chỉnh.\n- Tối ưu hiệu năng, khả năng truy cập và trải nghiệm người dùng.\n- Tham gia review code và xây dựng thư viện component dùng chung.", "level": "Middle", "loc": "Hà Nội", "must": ["React", "TypeScript", "HTML/CSS", "Unit testing", "≥ 3 năm kinh nghiệm"], "nice": ["Next.js", "Design system", "Tiếng Anh"], "qty": "2", "req": "- Tối thiểu 3 năm kinh nghiệm Frontend.\n- Thành thạo React, TypeScript, HTML/CSS.\n- Có kinh nghiệm viết unit test.\n- Ưu tiên: Next.js, kinh nghiệm xây design system.\n- Đọc hiểu tài liệu tiếng Anh.", "salary": "", "sample": true, "status": "Đang tuyển", "title": "Frontend Developer", "weights": {"edu": 10, "exp": 30, "lang": 10, "skill": 50}}, "candidates/mau-duchuy": {"analysis": {"breakdown": {"edu": 70, "exp": 70, "lang": 65, "skill": 75}, "concerns": ["Python mới ở mức cơ bản", "Chưa dùng Power BI"], "education": "Cử nhân Kinh tế", "email": "duchuy.pham@example.com", "jobTitle": "Data Analyst", "language": "zh", "languageConfidence": 97, "location": "Hà Nội", "matched": ["SQL", "Excel"], "missing": [], "name": "Phạm Đức Huy", "phone": "", "score": 72, "skills": ["SQL", "Excel", "Python"], "strengths": ["Kinh nghiệm báo cáo bán hàng thực tế"], "summary": "Đáp ứng kỹ năng bắt buộc nhưng chưa có kinh nghiệm xây dashboard.", "title": "Chuyên viên phân tích dữ liệu", "verdict": "Cân nhắc", "weights": {"edu": 10, "exp": 30, "lang": 10, "skill": 50}, "yearsExperience": 2}, "autoName": false, "createdAt": 1790380000000, "cvText": "范德辉\n数据分析师 · 越南河内\n\n工作经历\n数据分析师 — [公司 D]（2023 – 至今）\n使用 SQL 和 Excel 整理销售数据，制作每周报表。\n\n教育背景\n经济学学士 — [学校名称]\n\n技能\nSQL, Excel, Python（基础）", "email": "duchuy.pham@example.com", "file": null, "jobId": "mau-da", "lang": "zh", "name": "Phạm Đức Huy", "note": "", "phone": "", "sample": true, "score": 72, "stage": "screened", "translationVi": "PHẠM ĐỨC HUY\nChuyên viên phân tích dữ liệu · Hà Nội, Việt Nam\n\nKINH NGHIỆM LÀM VIỆC\nChuyên viên phân tích dữ liệu — [Công ty D] (2023 – nay)\nDùng SQL và Excel tổng hợp dữ liệu bán hàng, lập báo cáo hằng tuần.\n\nHỌC VẤN\nCử nhân Kinh tế — [Tên trường]\n\nKỸ NĂNG\nSQL, Excel, Python (cơ bản)"}, "candidates/mau-minhanh": {"analysis": {"breakdown": {"edu": 85, "exp": 95, "lang": 80, "skill": 90}, "concerns": ["Chưa đề cập kinh nghiệm viết test"], "education": "Cử nhân Công nghệ thông tin", "email": "minhanh.ng@example.com", "jobTitle": "Frontend Developer", "language": "en", "languageConfidence": 98, "location": "Hà Nội", "matched": ["React", "TypeScript", "HTML/CSS", "≥ 3 năm kinh nghiệm"], "missing": ["Unit testing"], "name": "Nguyễn Minh Anh", "phone": "09xx xxx xxx", "score": 90, "skills": ["React", "TypeScript", "JavaScript", "HTML/CSS", "Git", "Figma", "REST API"], "strengths": ["Kinh nghiệm xây dựng design system", "Có kết quả tối ưu hiệu năng rõ ràng", "Làm việc tốt với đội thiết kế"], "summary": "Đáp ứng hầu hết kỹ năng bắt buộc, kinh nghiệm 5 năm vượt yêu cầu tối thiểu 3 năm.", "title": "Frontend Developer", "verdict": "Rất phù hợp", "weights": {"edu": 10, "exp": 30, "lang": 10, "skill": 50}, "yearsExperience": 5}, "autoName": false, "createdAt": 1790320000000, "cvText": "NGUYEN MINH ANH\nFrontend Developer · minhanh.ng@example.com · Hanoi, Vietnam\n\nCAREER OBJECTIVE\nBuild high-performance web interfaces and grow into a Senior Frontend role within the next 2 years.\n\nWORK EXPERIENCE\nFrontend Developer — [Company A] (2023 – Present)\nBuilt user interfaces with React and TypeScript; developed an internal design system; improved page load speed.\n\nWeb Developer — [Company B] (2021 – 2023)\nDeveloped e-commerce websites with JavaScript; collaborated with the design team in Figma.\n\nEDUCATION\nBachelor of Information Technology — [University name] (2017 – 2021)\n\nSKILLS\nReact, TypeScript, JavaScript, HTML/CSS, Git, Figma, REST API\n\nCERTIFICATES & LANGUAGES\nEnglish: IELTS [score]", "email": "minhanh.ng@example.com", "file": null, "jobId": "mau-fe", "lang": "en", "name": "Nguyễn Minh Anh", "note": "", "phone": "09xx xxx xxx", "sample": true, "score": 90, "stage": "interview", "translationVi": "NGUYỄN MINH ANH\nFrontend Developer · minhanh.ng@example.com · Hà Nội, Việt Nam\n\nMỤC TIÊU NGHỀ NGHIỆP\nPhát triển giao diện web hiệu năng cao, hướng tới vị trí Senior Frontend trong 2 năm tới.\n\nKINH NGHIỆM LÀM VIỆC\nFrontend Developer — [Công ty A] (2023 – nay)\nXây dựng giao diện bằng React và TypeScript; phát triển hệ thống design system nội bộ; cải thiện tốc độ tải trang.\n\nWeb Developer — [Công ty B] (2021 – 2023)\nPhát triển website thương mại điện tử bằng JavaScript; phối hợp với đội thiết kế trên Figma.\n\nHỌC VẤN\nCử nhân Công nghệ thông tin — [Tên trường] (2017 – 2021)\n\nKỸ NĂNG\nReact, TypeScript, JavaScript, HTML/CSS, Git, Figma, REST API\n\nCHỨNG CHỈ & NGOẠI NGỮ\nTiếng Anh: IELTS [điểm]"}, "candidates/mau-quocbao": {"analysis": {"breakdown": {"edu": 80, "exp": 85, "lang": 60, "skill": 88}, "concerns": ["CV không nêu trình độ tiếng Anh"], "education": "Kỹ sư Khoa học máy tính", "email": "quocbao.tran@example.com", "jobTitle": "Backend Developer", "language": "vi", "languageConfidence": 99, "location": "TP.HCM", "matched": ["Node.js", "PostgreSQL", "REST API", "≥ 4 năm kinh nghiệm"], "missing": [], "name": "Trần Quốc Bảo", "phone": "", "score": 84, "skills": ["Node.js", "PostgreSQL", "AWS", "Docker", "Redis"], "strengths": ["Kinh nghiệm triển khai trên AWS", "Có dùng Docker và Redis"], "summary": "Kỹ năng backend vững, đủ kinh nghiệm; chưa rõ trình độ ngoại ngữ.", "title": "Backend Developer", "verdict": "Phù hợp", "weights": {"edu": 10, "exp": 30, "lang": 10, "skill": 50}, "yearsExperience": 6}, "autoName": false, "createdAt": 1790390000000, "cvText": "TRẦN QUỐC BẢO\nBackend Developer · TP.HCM\n\nKINH NGHIỆM\nBackend Developer — [Công ty C] (2020 – nay)\nPhát triển REST API bằng Node.js, thiết kế cơ sở dữ liệu PostgreSQL, triển khai trên AWS.\n\nHỌC VẤN\nKỹ sư Khoa học máy tính — [Tên trường]\n\nKỸ NĂNG\nNode.js, PostgreSQL, AWS, Docker, Redis", "email": "quocbao.tran@example.com", "file": null, "jobId": "mau-be", "lang": "vi", "name": "Trần Quốc Bảo", "note": "", "phone": "", "sample": true, "score": 84, "stage": "screened", "translationVi": ""}, "interviews/mau-minhanh": {"r": [{"comments": ["Nắm vững React hooks", "Giải bài tập rõ ràng", "Trình bày mạch lạc", "Chủ động", "Nói tiếng Anh còn chậm"], "date": "2026-09-29", "end": "11:00", "improve": "Chưa có kinh nghiệm viết unit test.", "kind": "Phỏng vấn chuyên môn", "mode": "Online", "people": [{"name": "[Trưởng nhóm Frontend]", "role": "Trưởng nhóm Frontend"}], "place": "[Link Google Meet]", "scores": [4, 4, 5, 4, 3], "start": "10:00", "strengths": "Kinh nghiệm design system; hiểu sâu về tối ưu hiệu năng.", "summary": "Nền tảng React vững. Đề xuất vào vòng 2.", "verdict": "Đạt"}, {"comments": ["", "", "", "", ""], "date": "2026-10-02", "end": "14:45", "improve": "", "kind": "Phỏng vấn với quản lý & HR", "mode": "Trực tiếp", "people": [], "place": "[Địa chỉ văn phòng]", "scores": [0, 0, 0, 0, 0], "start": "14:00", "strengths": "", "summary": "", "verdict": ""}], "rounds": 2}};
+function footer(){
+  const f = $('#side-foot');
+  if (S.offline) { f.innerHTML = '<b>Không lưu được dữ liệu</b><br>Hãy mở trang bằng cửa sổ trình duyệt thường.'; return; }
+  f.innerHTML = '<b>Lưu trên máy này</b><br>Nhớ sao lưu ở Cài đặt. ' + (S.sample ? (S.aiMode === 'auto' ? 'AI: đang bật.' : 'AI: đã kết nối, đang tắt.') : 'AI: chưa kết nối.');
+}
+async function boot(){
+  render(true);
+  try { await IDB.open(); }
+  catch (e) { S.offline = true; footer(); $('#main').innerHTML = '<div class="card empty">Trình duyệt này không cho lưu dữ liệu (có thể đang ở chế độ ẩn danh). Hãy mở trang bằng cửa sổ thường.</div>'; return; }
+  S.db = makeLocalDB(await IDB.all('docs')); S.assets = LocalFiles; S.downloads = LocalDownloads;
+  S.sample = makeAI(loadAI()); S.canImages = !!S.sample; if (!S.sample) S.aiMode = 'manual';
+  let seeded = false; try { seeded = localStorage.getItem('hr-seeded') === '1'; } catch (e) {}
+  if (S.db.isEmpty() && !seeded && SEED) { for (const k of Object.keys(SEED)) await S.db.doc(k).set(SEED[k]); try { localStorage.setItem('hr-seeded', '1'); } catch (e) {} }
+  footer();
+  const db = S.db;
+  db.collection('jobs').onSnapshot(snap => { S.jobs = snap.docs.map(d => Object.assign({id: d.id}, d.data())).sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0)); render(); });
+  db.collection('candidates').onSnapshot(snap => { S.cands = snap.docs.map(d => Object.assign({id: d.id}, d.data())); render(); });
+  db.collection('interviews').onSnapshot(snap => { const m = {}; snap.docs.forEach(d => m[d.id] = d.data()); S.ivs = m; render(); });
+}
+if (window.pdfjsLib) { try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } catch (e) {} }
+readHash();
+boot();
+})();
+</script>
+</body>
+</html>
